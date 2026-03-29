@@ -3,16 +3,12 @@ import {
   Building2,
   Clock,
   Facebook,
-  Home,
   Instagram,
   Mail,
   MapPin,
   Menu,
   Phone,
-  Signal,
-  Smartphone,
   User,
-  Wifi,
   X,
 } from "lucide-react";
 import { motion } from "motion/react";
@@ -21,30 +17,33 @@ import { useState } from "react";
 const NAV_LINKS = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
-  { label: "Products", href: "#categories" },
+  { label: "Services", href: "#categories" },
   { label: "Contact", href: "#contact" },
 ];
 
-const CATEGORIES = [
+const PHONE = "9709422981";
+const COMPANY = "Hunuman Paragliding Company";
+
+const SERVICES = [
   {
-    icon: Smartphone,
-    title: "Ncell SIM Cards",
-    desc: "New SIM cards, eSIM, and prepaid connections for all customers.",
+    emoji: "🪂",
+    title: "Tandem Paragliding",
+    desc: "Experience breathtaking tandem paragliding flights over Pokhara's stunning landscapes.",
   },
   {
-    icon: Signal,
-    title: "Ncell Recharge",
-    desc: "Top-up vouchers and digital recharge for Ncell numbers.",
+    emoji: "🚌",
+    title: "Bus & Jeep Transport",
+    desc: "Reliable bus and jeep transport services for tours and transfers.",
   },
   {
-    icon: Wifi,
-    title: "Data Packs",
-    desc: "Daily, weekly & monthly internet data packages from Ncell.",
+    emoji: "🚲",
+    title: "Bike Rental",
+    desc: "Bike rentals for exploring Pokhara at your own pace.",
   },
   {
-    icon: Home,
-    title: "Accessories",
-    desc: "Mobile accessories, phone covers, cables and more.",
+    emoji: "🗺️",
+    title: "Tour Packages",
+    desc: "Customized tour packages for adventure seekers and nature lovers.",
   },
 ];
 
@@ -70,7 +69,6 @@ export default function App() {
         style={{ background: "var(--store-header)" }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-          {/* Logo */}
           <a
             href="#home"
             className="flex items-center gap-2"
@@ -80,25 +78,24 @@ export default function App() {
               className="w-9 h-9 rounded-full flex items-center justify-center text-white text-lg font-bold"
               style={{ background: "var(--store-orange)" }}
             >
-              📶
+              🪂
             </div>
             <div className="leading-tight">
               <div
                 className="text-sm tracking-wide"
                 style={{ color: "var(--store-orange)", fontWeight: 700 }}
               >
-                REETIRIWAAZ STORE
+                HUNUMAN PARAGLIDING
               </div>
               <div
                 className="text-[10px]"
                 style={{ color: "oklch(var(--muted-foreground))" }}
               >
-                POS Tara Super Store
+                Company · Pokhara
               </div>
             </div>
           </a>
 
-          {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-6">
             {NAV_LINKS.map((link) => (
               <a
@@ -113,7 +110,6 @@ export default function App() {
             ))}
           </nav>
 
-          {/* CTA + Mobile toggle */}
           <div className="flex items-center gap-3">
             <Button
               asChild
@@ -122,7 +118,7 @@ export default function App() {
               style={{ background: "var(--store-orange)", border: "none" }}
               data-ocid="nav.primary_button"
             >
-              <a href="#contact">Visit Us</a>
+              <a href={`tel:${PHONE}`}>Call Us</a>
             </Button>
             <button
               type="button"
@@ -136,7 +132,6 @@ export default function App() {
           </div>
         </div>
 
-        {/* Mobile menu */}
         {menuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -8 }}
@@ -155,15 +150,14 @@ export default function App() {
                 {link.label}
               </button>
             ))}
-            <button
-              type="button"
-              onClick={() => handleMobileNav("#contact")}
+            <a
+              href={`tel:${PHONE}`}
               data-ocid="nav.primary_button"
-              className="mt-3 w-full text-center text-sm font-semibold text-white py-2 px-4 rounded-lg"
+              className="mt-3 block w-full text-center text-sm font-semibold text-white py-2 px-4 rounded-lg"
               style={{ background: "var(--store-orange)" }}
             >
-              Visit Us
-            </button>
+              📞 {PHONE}
+            </a>
           </motion.div>
         )}
       </header>
@@ -171,7 +165,7 @@ export default function App() {
       {/* HERO */}
       <section
         id="home"
-        className="relative w-full min-h-[560px] flex items-center"
+        className="relative w-full min-h-[520px] flex items-center"
         style={{
           backgroundImage:
             "url('/assets/generated/tara-store-hero.dim_1400x700.jpg')",
@@ -183,7 +177,7 @@ export default function App() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(90deg, rgba(31,20,5,0.82) 0%, rgba(31,20,5,0.5) 60%, rgba(31,20,5,0.18) 100%)",
+              "linear-gradient(90deg, rgba(10,30,60,0.88) 0%, rgba(10,30,60,0.55) 60%, rgba(10,30,60,0.2) 100%)",
           }}
         />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 py-24">
@@ -197,14 +191,14 @@ export default function App() {
               className="inline-block text-xs font-semibold uppercase tracking-widest mb-3 px-3 py-1 rounded-full"
               style={{ background: "var(--store-orange)", color: "#fff" }}
             >
-              Ncell Dealer · Pokhara
+              Paragliding & Adventure · Pokhara
             </span>
             <h1 className="text-4xl sm:text-5xl font-bold text-white leading-tight mb-4">
-              Reetiriwaaz Store POS Tara Super Store
+              {COMPANY}
             </h1>
             <p className="text-base sm:text-lg text-white/80 mb-8 leading-relaxed">
-              Your trusted Ncell dealer at Prithive Chowk. SIM cards, recharge,
-              data packs and mobile accessories — all in one place.
+              Soar above Pokhara with Nepal's trusted paragliding company.
+              Tandem flights, tours, and adventure transport — all in one place.
             </p>
             <div className="flex flex-wrap gap-3">
               <Button
@@ -214,7 +208,7 @@ export default function App() {
                 style={{ background: "var(--store-orange)", border: "none" }}
                 data-ocid="hero.primary_button"
               >
-                <a href="#contact">Find Us</a>
+                <a href={`tel:${PHONE}`}>📞 Book Now</a>
               </Button>
               <Button
                 asChild
@@ -223,14 +217,14 @@ export default function App() {
                 className="font-semibold border-white text-white bg-white/10 hover:bg-white/20"
                 data-ocid="hero.secondary_button"
               >
-                <a href="#categories">Our Products</a>
+                <a href="#categories">Our Services</a>
               </Button>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* CATEGORY STRIP */}
+      {/* SERVICES */}
       <section
         id="categories"
         className="py-14"
@@ -248,20 +242,21 @@ export default function App() {
               className="text-2xl sm:text-3xl font-bold mb-2"
               style={{ color: "oklch(var(--foreground))" }}
             >
-              Ncell Products & Services
+              Our Services
             </h2>
             <p
               className="text-sm"
               style={{ color: "oklch(var(--muted-foreground))" }}
             >
-              Everything Ncell, available right here at Prithive Chowk.
+              Adventure, transport, and tourism — all available from Hunuman
+              Paragliding.
             </p>
           </motion.div>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
-            {CATEGORIES.map((cat, i) => (
+            {SERVICES.map((svc, i) => (
               <motion.div
-                key={cat.title}
+                key={svc.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -270,33 +265,38 @@ export default function App() {
                 data-ocid={`categories.item.${i + 1}`}
               >
                 <div
-                  className="w-12 h-12 rounded-full flex items-center justify-center mb-4"
+                  className="w-12 h-12 rounded-full flex items-center justify-center mb-4 text-2xl"
                   style={{ background: "oklch(0.93 0.04 60)" }}
                 >
-                  <cat.icon
-                    size={22}
-                    style={{ color: "var(--store-orange)" }}
-                  />
+                  {svc.emoji}
                 </div>
                 <h3
                   className="font-semibold text-base mb-1"
                   style={{ color: "oklch(var(--foreground))" }}
                 >
-                  {cat.title}
+                  {svc.title}
                 </h3>
                 <p
-                  className="text-xs leading-relaxed"
+                  className="text-xs leading-relaxed mb-3"
                   style={{ color: "oklch(var(--muted-foreground))" }}
                 >
-                  {cat.desc}
+                  {svc.desc}
                 </p>
+                <a
+                  href={`tel:${PHONE}`}
+                  className="mt-auto inline-flex items-center gap-1 text-xs font-semibold text-white px-3 py-1.5 rounded-full"
+                  style={{ background: "var(--store-orange)" }}
+                  data-ocid={`service.call.${i + 1}`}
+                >
+                  📞 Call to Book
+                </a>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* STORE INFO */}
+      {/* COMPANY INFO */}
       <section
         id="about"
         className="py-16"
@@ -310,7 +310,7 @@ export default function App() {
             className="text-center mb-12"
           >
             <h2 className="text-2xl sm:text-3xl font-bold mb-2">
-              Store Information
+              Company Information
             </h2>
             <p
               className="text-sm"
@@ -340,7 +340,7 @@ export default function App() {
               />
             </motion.div>
 
-            {/* Store details */}
+            {/* Company details */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -352,7 +352,7 @@ export default function App() {
                 className="text-lg font-bold mb-5 pb-3 border-b border-border"
                 style={{ color: "var(--store-orange)" }}
               >
-                About the Store
+                About the Company
               </h3>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
@@ -366,16 +366,14 @@ export default function App() {
                       className="text-xs font-semibold uppercase tracking-wide mb-0.5"
                       style={{ color: "oklch(var(--muted-foreground))" }}
                     >
-                      Store Name
+                      Company Name
                     </div>
-                    <div className="text-sm font-medium">
-                      Reetiriwaaz Store POS Tara Super Store
-                    </div>
+                    <div className="text-sm font-medium">{COMPANY}</div>
                     <div
                       className="text-xs"
                       style={{ color: "oklch(var(--muted-foreground))" }}
                     >
-                      Ncell Products Dealer
+                      Paragliding & Adventure
                     </div>
                   </div>
                 </li>
@@ -411,9 +409,7 @@ export default function App() {
                     <div className="text-sm font-medium">
                       Paljorling Camp, Prithive Chowk
                       <br />
-                      Pokhara, P.O. Box No. 18
-                      <br />
-                      Nepal SUB-METRO
+                      Pokhara, Nepal
                     </div>
                   </div>
                 </li>
@@ -431,18 +427,11 @@ export default function App() {
                       Phone
                     </div>
                     <a
-                      href="tel:9802257198"
+                      href={`tel:${PHONE}`}
                       className="text-sm font-medium hover:underline block"
                       data-ocid="contact.link"
                     >
-                      9802257198
-                    </a>
-                    <a
-                      href="tel:9808091436"
-                      className="text-sm font-medium hover:underline block"
-                      data-ocid="contact.link"
-                    >
-                      9808091436
+                      {PHONE}
                     </a>
                   </div>
                 </li>
@@ -479,7 +468,7 @@ export default function App() {
                       className="text-xs font-semibold uppercase tracking-wide mb-0.5"
                       style={{ color: "oklch(var(--muted-foreground))" }}
                     >
-                      Store Hours
+                      Hours
                     </div>
                     <div className="text-sm font-medium">
                       Open Daily: 7:00 AM – 9:00 PM
@@ -515,7 +504,7 @@ export default function App() {
               {/* eSewa QR */}
               <div className="bg-white rounded-xl p-4 mb-4 flex flex-col items-center shadow-xs">
                 <img
-                  src="/assets/uploads/img_6439-019d37d0-3080-74de-8194-b74fd9cfc712-2.jpeg"
+                  src="/assets/uploads/img_6445-019d3906-088f-73e6-abfb-afc405478758-1.jpeg"
                   alt="eSewa QR Code"
                   className="w-44 h-44 object-contain rounded-lg mb-2"
                 />
@@ -530,13 +519,13 @@ export default function App() {
                     className="text-xs"
                     style={{ color: "oklch(var(--muted-foreground))" }}
                   >
-                    Tsering Dorja · 9808091436
+                    Tsering Dorje · 9766506189
                   </div>
                 </div>
               </div>
 
               {/* NIC Asia QR */}
-              <div className="bg-white rounded-xl p-4 flex flex-col items-center shadow-xs">
+              <div className="bg-white rounded-xl p-4 mb-4 flex flex-col items-center shadow-xs">
                 <img
                   src="/assets/uploads/img_6438-019d37d0-2f9e-72df-a037-0a9dde42aeb2-1.jpeg"
                   alt="NIC Asia MoBank QR Code"
@@ -554,6 +543,52 @@ export default function App() {
                     style={{ color: "oklch(var(--muted-foreground))" }}
                   >
                     Mobile Banking Payment
+                  </div>
+                </div>
+              </div>
+
+              {/* MyPay QR */}
+              <div className="bg-white rounded-xl p-4 mb-4 flex flex-col items-center shadow-xs">
+                <img
+                  src="/assets/uploads/img_6437-019d390d-1e81-76f8-9d6d-cbdd6618bb1a-1.jpeg"
+                  alt="MyPay QR Code"
+                  className="w-44 h-44 object-contain rounded-lg mb-2"
+                />
+                <div className="text-center">
+                  <div
+                    className="text-sm font-semibold"
+                    style={{ color: "#e6a817" }}
+                  >
+                    MyPay
+                  </div>
+                  <div
+                    className="text-xs"
+                    style={{ color: "oklch(var(--muted-foreground))" }}
+                  >
+                    Tsering Dorja · 9808091436
+                  </div>
+                </div>
+              </div>
+
+              {/* cityPAY QR */}
+              <div className="bg-white rounded-xl p-4 flex flex-col items-center shadow-xs">
+                <img
+                  src="/assets/uploads/img_6446-019d390d-1ec6-764d-b06d-19c1250ca14f-2.jpeg"
+                  alt="cityPAY QR Code"
+                  className="w-44 h-44 object-contain rounded-lg mb-2"
+                />
+                <div className="text-center">
+                  <div
+                    className="text-sm font-semibold"
+                    style={{ color: "#e63946" }}
+                  >
+                    cityPAY
+                  </div>
+                  <div
+                    className="text-xs"
+                    style={{ color: "oklch(var(--muted-foreground))" }}
+                  >
+                    TSERING DORJA · +9779766506189
                   </div>
                 </div>
               </div>
@@ -575,21 +610,20 @@ export default function App() {
         >
           <div className="flex items-center justify-center gap-2 text-white mb-1">
             <Clock size={20} />
-            <span className="text-lg font-semibold">Store Hours</span>
+            <span className="text-lg font-semibold">
+              Open Daily: 7:00 AM – 9:00 PM
+            </span>
           </div>
           <p className="text-white/90 text-base">
-            Open Daily &nbsp;<strong>7:00 AM – 9:00 PM</strong>
+            Paljorling Camp, Prithive Chowk, Pokhara
           </p>
-          <p className="text-white/75 text-sm mt-1">
-            Paljorling Camp, Prithive Chowk, Pokhara · 9802257198 / 9808091436
-          </p>
-          <p className="text-white/75 text-sm mt-0.5">
+          <p className="text-white/90 text-lg font-bold mt-1">
             <a
-              href="mailto:reetiriwaazstore@gmail.com"
-              className="hover:text-white transition-colors underline"
+              href={`tel:${PHONE}`}
+              className="hover:text-white transition-colors"
               data-ocid="contact.link"
             >
-              reetiriwaazstore@gmail.com
+              📞 {PHONE}
             </a>
           </p>
         </motion.div>
@@ -601,30 +635,29 @@ export default function App() {
         className="text-white"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-8 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-3">
               <div
                 className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold"
                 style={{ background: "var(--store-orange)" }}
               >
-                📶
+                🪂
               </div>
               <div>
                 <div className="text-sm font-bold tracking-wide">
-                  REETIRIWAAZ STORE
+                  HUNUMAN PARAGLIDING
                 </div>
                 <div className="text-[10px] text-white/60">
-                  POS Tara Super Store
+                  Company · Pokhara
                 </div>
               </div>
             </div>
             <p className="text-xs text-white/70 leading-relaxed">
-              Your trusted Ncell products dealer in the heart of Pokhara, Nepal.
+              Nepal's trusted paragliding and adventure company in the heart of
+              Pokhara.
             </p>
           </div>
 
-          {/* Address */}
           <div>
             <h4
               className="text-sm font-semibold mb-3 uppercase tracking-wider"
@@ -634,24 +667,14 @@ export default function App() {
             </h4>
             <ul className="space-y-1.5 text-xs text-white/75">
               <li>Paljorling Camp, Prithive Chowk</li>
-              <li>Pokhara, P.O. Box No. 18</li>
-              <li>Nepal SUB-METRO</li>
+              <li>Pokhara, Nepal</li>
               <li className="mt-2">
                 <a
-                  href="tel:9802257198"
+                  href={`tel:${PHONE}`}
                   className="hover:text-white transition-colors"
                   data-ocid="footer.link"
                 >
-                  📞 9802257198
-                </a>
-              </li>
-              <li>
-                <a
-                  href="tel:9808091436"
-                  className="hover:text-white transition-colors"
-                  data-ocid="footer.link"
-                >
-                  📞 9808091436
+                  📞 {PHONE}
                 </a>
               </li>
               <li>
@@ -666,7 +689,6 @@ export default function App() {
             </ul>
           </div>
 
-          {/* Links */}
           <div>
             <h4
               className="text-sm font-semibold mb-3 uppercase tracking-wider"
@@ -689,7 +711,6 @@ export default function App() {
             </ul>
           </div>
 
-          {/* Social */}
           <div>
             <h4
               className="text-sm font-semibold mb-3 uppercase tracking-wider"

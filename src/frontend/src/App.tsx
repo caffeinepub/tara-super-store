@@ -22,6 +22,7 @@ const NAV_LINKS = [
   { label: "About", href: "#about" },
   { label: "Services", href: "#categories" },
   { label: "Evaluations", href: "#evaluations" },
+  { label: "License", href: "#license-proof" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -492,6 +493,127 @@ export default function App() {
                     </span>
                   </div>
                 ))}
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* LICENSE / RATING PROOF */}
+      <section
+        id="license-proof"
+        className="py-14"
+        style={{ background: "oklch(0.96 0.025 80)" }}
+      >
+        <div className="max-w-2xl mx-auto px-4 sm:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-8"
+          >
+            <h2
+              className="text-2xl sm:text-3xl font-bold mb-2"
+              style={{ color: "var(--store-orange)" }}
+            >
+              License / Rating Proof
+            </h2>
+            <p
+              className="text-sm"
+              style={{ color: "oklch(var(--muted-foreground))" }}
+            >
+              Official APPI Member Proof of Rating — Tsering Dorjee
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.97 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="bg-white rounded-2xl shadow-sm border border-border overflow-hidden"
+          >
+            {/* Header bar */}
+            <div
+              className="px-6 py-4 flex items-center gap-3"
+              style={{ background: "var(--store-orange)" }}
+            >
+              <Award size={22} className="text-white" />
+              <div>
+                <div className="text-white font-bold text-base tracking-wide">
+                  APPI Member Proof Rating
+                </div>
+                <div className="text-white/80 text-xs">
+                  Association of Paragliding Pilots and Instructors
+                </div>
+              </div>
+            </div>
+
+            {/* Certificate image */}
+            <div className="p-6 flex justify-center">
+              <img
+                src="/assets/uploads/img_6449-019d3b05-871f-76f8-ad07-2ec50043fe97-1.jpeg"
+                alt="APPI Member Proof Rating Certificate - Tsering Dorjee License 10359"
+                className="w-full max-w-md rounded-xl border border-border shadow-xs object-contain"
+              />
+            </div>
+
+            {/* Key highlights */}
+            <div className="px-6 pb-6 grid grid-cols-2 sm:grid-cols-3 gap-4">
+              <div className="bg-orange-50 rounded-xl p-4 text-center">
+                <div
+                  className="text-xs font-semibold uppercase tracking-wide mb-1"
+                  style={{ color: "oklch(var(--muted-foreground))" }}
+                >
+                  License No.
+                </div>
+                <div
+                  className="font-bold text-lg"
+                  style={{ color: "var(--store-orange)" }}
+                >
+                  10359
+                </div>
+              </div>
+              <div className="bg-orange-50 rounded-xl p-4 text-center">
+                <div
+                  className="text-xs font-semibold uppercase tracking-wide mb-1"
+                  style={{ color: "oklch(var(--muted-foreground))" }}
+                >
+                  Rating
+                </div>
+                <div
+                  className="font-bold text-sm"
+                  style={{ color: "var(--store-orange)" }}
+                >
+                  APPI 3 Pilot
+                </div>
+                <div
+                  className="font-semibold text-xs mt-0.5"
+                  style={{ color: "oklch(var(--muted-foreground))" }}
+                >
+                  Advanced SIV
+                </div>
+              </div>
+              <div className="bg-orange-50 rounded-xl p-4 text-center col-span-2 sm:col-span-1">
+                <div
+                  className="text-xs font-semibold uppercase tracking-wide mb-1"
+                  style={{ color: "oklch(var(--muted-foreground))" }}
+                >
+                  School
+                </div>
+                <div
+                  className="font-bold text-sm"
+                  style={{ color: "var(--store-orange)" }}
+                >
+                  Blue Sky
+                </div>
+                <div
+                  className="font-semibold text-xs mt-0.5"
+                  style={{ color: "oklch(var(--muted-foreground))" }}
+                >
+                  Paragliding
+                </div>
               </div>
             </div>
           </motion.div>

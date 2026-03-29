@@ -1,6 +1,9 @@
 import { Button } from "@/components/ui/button";
 import {
+  Award,
   Building2,
+  CheckCircle2,
+  Circle,
   Clock,
   Facebook,
   Instagram,
@@ -18,10 +21,12 @@ const NAV_LINKS = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Services", href: "#categories" },
+  { label: "Evaluations", href: "#evaluations" },
   { label: "Contact", href: "#contact" },
 ];
 
-const PHONE = "9709422981";
+const PHONE = "9808091436";
+const EMAIL = "hunumanparagliding@gmail.com";
 const COMPANY = "Hunuman Paragliding Company";
 
 const SERVICES = [
@@ -46,6 +51,26 @@ const SERVICES = [
     desc: "Customized tour packages for adventure seekers and nature lovers.",
   },
 ];
+
+const PARAGLIDING_COURSES = [
+  { name: "APPI 1 Discover", status: "Empty" },
+  { name: "APPI 2 Explore", status: "Empty" },
+  { name: "APPI 3 Pilot", status: "Empty" },
+  { name: "Dynamic Soaring", status: "Empty" },
+  { name: "Winch", status: "Empty" },
+  { name: "Thermalling", status: "Empty" },
+  { name: "APPI 4 Progress", status: "Empty" },
+  { name: "XC", status: "Empty" },
+  { name: "SIV", status: "Empty" },
+  { name: "Advanced SIV", status: "Empty" },
+  { name: "APPI 5 Advanced", status: "Empty" },
+  { name: "Non Commercial Tandem", status: "Empty" },
+  { name: "Pro Tandem", status: "Full" },
+  { name: "Assistant Instructor", status: "Empty" },
+  { name: "APPI Instructor", status: "Empty" },
+];
+
+const POWER_COURSES = [{ name: "Paratrick", status: "Empty" }];
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -296,6 +321,183 @@ export default function App() {
         </div>
       </section>
 
+      {/* MEMBER AUTO EVALUATIONS */}
+      <section
+        id="evaluations"
+        className="py-14"
+        style={{ background: "var(--store-cream)" }}
+        data-ocid="evaluations.section"
+      >
+        <div className="max-w-4xl mx-auto px-4 sm:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-8"
+          >
+            <h2
+              className="text-2xl sm:text-3xl font-bold mb-2"
+              style={{ color: "var(--store-orange)" }}
+            >
+              Member Auto Evaluations
+            </h2>
+            <p
+              className="text-sm"
+              style={{ color: "oklch(var(--muted-foreground))" }}
+            >
+              Official APPI pilot evaluation record for Hunuman Paragliding
+              Company
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55, delay: 0.1 }}
+            className="bg-white rounded-2xl shadow-sm border border-border overflow-hidden"
+          >
+            {/* Card header */}
+            <div
+              className="px-6 py-4 flex items-center gap-3"
+              style={{ background: "var(--store-orange)" }}
+            >
+              <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white text-xl">
+                🪂
+              </div>
+              <div>
+                <div className="text-white font-bold text-base tracking-wide">
+                  APPI Member Evaluations
+                </div>
+                <div className="text-white/80 text-xs">
+                  Association of Paragliding Pilots and Instructors
+                </div>
+              </div>
+            </div>
+
+            {/* Member details */}
+            <div
+              className="px-6 py-4 flex flex-wrap gap-x-8 gap-y-2 border-b border-border text-sm"
+              style={{ background: "oklch(0.98 0.01 80)" }}
+            >
+              <div className="flex items-center gap-2">
+                <span
+                  className="text-xs font-semibold uppercase tracking-wide"
+                  style={{ color: "oklch(var(--muted-foreground))" }}
+                >
+                  License No:
+                </span>
+                <span
+                  className="font-bold"
+                  style={{ color: "var(--store-orange)" }}
+                >
+                  10359
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span
+                  className="text-xs font-semibold uppercase tracking-wide"
+                  style={{ color: "oklch(var(--muted-foreground))" }}
+                >
+                  Name:
+                </span>
+                <span className="font-semibold">Tsering Dorjee</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span
+                  className="text-xs font-semibold uppercase tracking-wide"
+                  style={{ color: "oklch(var(--muted-foreground))" }}
+                >
+                  Tel:
+                </span>
+                <a
+                  href="tel:+9779806513749"
+                  className="font-semibold hover:underline"
+                  style={{ color: "var(--store-orange)" }}
+                  data-ocid="evaluations.link"
+                >
+                  +977 9806513749
+                </a>
+              </div>
+            </div>
+
+            {/* Paragliding courses */}
+            <div className="px-6 pt-5 pb-3">
+              <div
+                className="text-xs font-bold uppercase tracking-widest mb-3 flex items-center gap-2"
+                style={{ color: "var(--store-orange)" }}
+              >
+                <span>🪂</span> Paragliding
+              </div>
+              <div className="divide-y divide-border/60">
+                {PARAGLIDING_COURSES.map((course, i) => (
+                  <div
+                    key={course.name}
+                    className="flex items-center justify-between py-2.5"
+                    data-ocid={`evaluations.item.${i + 1}`}
+                  >
+                    <span
+                      className="text-sm"
+                      style={{
+                        color:
+                          course.status === "Full"
+                            ? "oklch(var(--foreground))"
+                            : "oklch(var(--muted-foreground))",
+                        fontWeight: course.status === "Full" ? 600 : 400,
+                      }}
+                    >
+                      {course.name}
+                    </span>
+                    {course.status === "Full" ? (
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-700">
+                        <CheckCircle2 size={13} className="text-green-600" />
+                        Full
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-400">
+                        <Circle size={12} className="text-gray-300" />
+                        Empty
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Power section */}
+            <div className="px-6 pt-2 pb-5 border-t border-border/60 mt-1">
+              <div
+                className="text-xs font-bold uppercase tracking-widest mb-3 flex items-center gap-2 mt-4"
+                style={{ color: "var(--store-orange)" }}
+              >
+                <span>⚡</span> Power
+              </div>
+              <div className="divide-y divide-border/60">
+                {POWER_COURSES.map((course, i) => (
+                  <div
+                    key={course.name}
+                    className="flex items-center justify-between py-2.5"
+                    data-ocid={`evaluations.power.item.${i + 1}`}
+                  >
+                    <span
+                      className="text-sm"
+                      style={{ color: "oklch(var(--muted-foreground))" }}
+                    >
+                      {course.name}
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-400">
+                      <Circle size={12} className="text-gray-300" />
+                      Empty
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* COMPANY INFO */}
       <section
         id="about"
@@ -394,6 +596,32 @@ export default function App() {
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
+                  <Award
+                    size={18}
+                    className="mt-0.5 shrink-0"
+                    style={{ color: "var(--store-orange)" }}
+                  />
+                  <div>
+                    <div
+                      className="text-xs font-semibold uppercase tracking-wide mb-0.5"
+                      style={{ color: "oklch(var(--muted-foreground))" }}
+                    >
+                      APPI License
+                    </div>
+                    <div className="text-sm font-medium">APPI S I V Pilot</div>
+                    <div className="text-sm font-medium">License No. 10359</div>
+                    <div className="text-sm font-medium">
+                      Advanced S I V Pilot
+                    </div>
+                    <div
+                      className="text-xs mt-0.5"
+                      style={{ color: "oklch(var(--muted-foreground))" }}
+                    >
+                      Tsering Dorjee
+                    </div>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
                   <MapPin
                     size={18}
                     className="mt-0.5 shrink-0"
@@ -449,11 +677,11 @@ export default function App() {
                       Email
                     </div>
                     <a
-                      href="mailto:reetiriwaazstore@gmail.com"
+                      href={`mailto:${EMAIL}`}
                       className="text-sm font-medium hover:underline block break-all"
                       data-ocid="contact.link"
                     >
-                      reetiriwaazstore@gmail.com
+                      {EMAIL}
                     </a>
                   </div>
                 </li>
@@ -565,7 +793,7 @@ export default function App() {
                     className="text-xs"
                     style={{ color: "oklch(var(--muted-foreground))" }}
                   >
-                    Tsering Dorja · 9808091436
+                    Tsering Dorja · 9709422981
                   </div>
                 </div>
               </div>
@@ -626,6 +854,15 @@ export default function App() {
               📞 {PHONE}
             </a>
           </p>
+          <p className="text-white/80 text-sm mt-1">
+            <a
+              href={`mailto:${EMAIL}`}
+              className="hover:text-white transition-colors"
+              data-ocid="contact.link"
+            >
+              ✉️ {EMAIL}
+            </a>
+          </p>
         </motion.div>
       </section>
 
@@ -679,11 +916,11 @@ export default function App() {
               </li>
               <li>
                 <a
-                  href="mailto:reetiriwaazstore@gmail.com"
+                  href={`mailto:${EMAIL}`}
                   className="hover:text-white transition-colors break-all"
                   data-ocid="footer.link"
                 >
-                  ✉️ reetiriwaazstore@gmail.com
+                  ✉️ {EMAIL}
                 </a>
               </li>
             </ul>
@@ -741,6 +978,9 @@ export default function App() {
               </a>
             </div>
             <p className="text-xs text-white/50 mt-4">Owner: Tsering Dorjee</p>
+            <p className="text-xs text-white/40 mt-1">
+              🏅 APPI Advanced SIV Pilot · License No. 10359
+            </p>
           </div>
         </div>
 

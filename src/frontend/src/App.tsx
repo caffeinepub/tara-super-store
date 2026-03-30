@@ -1,6 +1,13 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import {
   Award,
@@ -15,6 +22,7 @@ import {
   Shield,
   Wind,
   X,
+  Zap,
 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
@@ -45,6 +53,14 @@ const services = [
     description:
       "Experience the thrill of paragliding with our APPI certified Advanced SIV pilot. Safe, exhilarating tandem flights over the stunning Pokhara valley.",
     color: "sky",
+  },
+  {
+    icon: Zap,
+    title: "UltraLight Flight",
+    badge: "Book Now",
+    description:
+      "Experience the freedom of ultralight aviation over the stunning Pokhara valley. Book your UltraLight flight with our experienced APPI certified pilot Tsering Dorjee.",
+    color: "amber",
   },
   {
     icon: Shield,
@@ -97,6 +113,7 @@ export default function App() {
     name: "",
     phone: "",
     date: "",
+    serviceType: "",
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
@@ -104,6 +121,35 @@ export default function App() {
   const handleBooking = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
+  };
+
+  const getServiceColor = (color: string) => {
+    switch (color) {
+      case "sky":
+        return {
+          icon: "bg-sky-100 text-sky-600",
+          badge: "bg-sky-100 text-sky-700",
+          btn: "bg-sky-500 hover:bg-sky-400 text-white",
+        };
+      case "teal":
+        return {
+          icon: "bg-teal-100 text-teal-600",
+          badge: "bg-teal-100 text-teal-700",
+          btn: "bg-teal-600 hover:bg-teal-500 text-white",
+        };
+      case "amber":
+        return {
+          icon: "bg-amber-100 text-amber-600",
+          badge: "bg-amber-100 text-amber-700",
+          btn: "bg-amber-500 hover:bg-amber-400 text-white",
+        };
+      default:
+        return {
+          icon: "bg-sky-100 text-sky-600",
+          badge: "bg-sky-100 text-sky-700",
+          btn: "bg-sky-500 hover:bg-sky-400 text-white",
+        };
+    }
   };
 
   return (
@@ -296,63 +342,54 @@ export default function App() {
                 Nepal.
               </p>
             </motion.div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {services.map((svc, i) => (
-                <motion.div
-                  key={svc.title}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  data-ocid={`services.item.${i + 1}`}
-                >
-                  <Card className="h-full flex flex-col border-border shadow-md hover:shadow-lg transition-shadow">
-                    <CardHeader className="pb-3">
-                      <div
-                        className={`w-12 h-12 rounded-xl flex items-center justify-center mb-3 ${
-                          svc.color === "sky"
-                            ? "bg-sky-100 text-sky-600"
-                            : "bg-teal-100 text-teal-600"
-                        }`}
-                      >
-                        <svc.icon className="w-6 h-6" />
-                      </div>
-                      <Badge
-                        variant="secondary"
-                        className={`self-start text-xs mb-1 ${
-                          svc.color === "sky"
-                            ? "bg-sky-100 text-sky-700"
-                            : "bg-teal-100 text-teal-700"
-                        }`}
-                      >
-                        {svc.badge}
-                      </Badge>
-                      <CardTitle className="font-heading text-lg">
-                        {svc.title}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="flex flex-col flex-1">
-                      <p className="text-sm text-muted-foreground leading-relaxed flex-1 mb-4">
-                        {svc.description}
-                      </p>
-                      <a href={`tel:${PHONE_PRIMARY}`}>
-                        <Button
-                          size="sm"
-                          className={`w-full ${
-                            svc.color === "sky"
-                              ? "bg-sky-500 hover:bg-sky-400 text-white"
-                              : "bg-teal-600 hover:bg-teal-500 text-white"
-                          }`}
-                          data-ocid={`services.button.${i + 1}`}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {services.map((svc, i) => {
+                const colors = getServiceColor(svc.color);
+                return (
+                  <motion.div
+                    key={svc.title}
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.08 }}
+                    data-ocid={`services.item.${i + 1}`}
+                  >
+                    <Card className="h-full flex flex-col border-border shadow-md hover:shadow-lg transition-shadow">
+                      <CardHeader className="pb-3">
+                        <div
+                          className={`w-12 h-12 rounded-xl flex items-center justify-center mb-3 ${colors.icon}`}
                         >
-                          <Phone className="w-3.5 h-3.5 mr-1.5" />
-                          Call to Book
-                        </Button>
-                      </a>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
+                          <svc.icon className="w-6 h-6" />
+                        </div>
+                        <Badge
+                          variant="secondary"
+                          className={`self-start text-xs mb-1 ${colors.badge}`}
+                        >
+                          {svc.badge}
+                        </Badge>
+                        <CardTitle className="font-heading text-lg">
+                          {svc.title}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="flex flex-col flex-1">
+                        <p className="text-sm text-muted-foreground leading-relaxed flex-1 mb-4">
+                          {svc.description}
+                        </p>
+                        <a href={`tel:${PHONE_PRIMARY}`}>
+                          <Button
+                            size="sm"
+                            className={`w-full ${colors.btn}`}
+                            data-ocid={`services.button.${i + 1}`}
+                          >
+                            <Phone className="w-3.5 h-3.5 mr-1.5" />
+                            Call to Book
+                          </Button>
+                        </a>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -665,7 +702,10 @@ export default function App() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4 }}
               >
-                <Card className="border-sky-200 bg-sky-50 text-center p-10">
+                <Card
+                  className="border-sky-200 bg-sky-50 text-center p-10"
+                  data-ocid="booking.success_state"
+                >
                   <CheckCircle className="w-12 h-12 text-sky-500 mx-auto mb-4" />
                   <h3 className="font-heading text-xl font-bold text-sky-700 mb-2">
                     Booking Request Sent!
@@ -705,6 +745,7 @@ export default function App() {
                         }
                         className="w-full border border-border rounded-lg px-4 py-2.5 text-sm text-foreground bg-background focus:outline-none focus:ring-2 focus:ring-sky-400 transition"
                         placeholder="Your full name"
+                        data-ocid="booking.input"
                       />
                     </div>
                     <div>
@@ -724,7 +765,48 @@ export default function App() {
                         }
                         className="w-full border border-border rounded-lg px-4 py-2.5 text-sm text-foreground bg-background focus:outline-none focus:ring-2 focus:ring-sky-400 transition"
                         placeholder="Your phone number"
+                        data-ocid="booking.input"
                       />
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="booking-service"
+                        className="block text-sm font-medium text-foreground mb-1.5"
+                      >
+                        Service Type *
+                      </label>
+                      <Select
+                        required
+                        value={booking.serviceType}
+                        onValueChange={(val) =>
+                          setBooking((b) => ({ ...b, serviceType: val }))
+                        }
+                      >
+                        <SelectTrigger
+                          id="booking-service"
+                          className="w-full focus:ring-sky-400"
+                          data-ocid="booking.select"
+                        >
+                          <SelectValue placeholder="Select a service..." />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="tandem-paragliding">
+                            Tandem Paragliding
+                          </SelectItem>
+                          <SelectItem value="ultralight-flight">
+                            UltraLight Flight
+                          </SelectItem>
+                          <SelectItem value="siv-training">
+                            SIV Training
+                          </SelectItem>
+                          <SelectItem value="tour-package">
+                            Tour Package
+                          </SelectItem>
+                          <SelectItem value="transport-service">
+                            Transport Service
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
                     <div>
                       <label
@@ -742,6 +824,7 @@ export default function App() {
                           setBooking((b) => ({ ...b, date: e.target.value }))
                         }
                         className="w-full border border-border rounded-lg px-4 py-2.5 text-sm text-foreground bg-background focus:outline-none focus:ring-2 focus:ring-sky-400 transition"
+                        data-ocid="booking.input"
                       />
                     </div>
                     <div>
@@ -760,11 +843,13 @@ export default function App() {
                         }
                         className="w-full border border-border rounded-lg px-4 py-2.5 text-sm text-foreground bg-background focus:outline-none focus:ring-2 focus:ring-sky-400 transition resize-none"
                         placeholder="Number of passengers, special requests..."
+                        data-ocid="booking.textarea"
                       />
                     </div>
                     <Button
                       type="submit"
                       className="bg-sky-500 hover:bg-sky-400 text-white w-full py-3 text-base font-semibold"
+                      data-ocid="booking.submit_button"
                     >
                       <Send className="w-4 h-4 mr-2" />
                       Submit Booking

@@ -1,0 +1,629 @@
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import {
+  ChevronRight,
+  Heart,
+  MapPin,
+  Menu,
+  Palette,
+  Phone,
+  QrCode,
+  Shirt,
+  ShoppingBag,
+  Star,
+  X,
+} from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+import { useState } from "react";
+
+const PHONE_PRIMARY = "9846027384";
+const COMPANY_NAME = "Tsering Palzom Company";
+const OWNER_NAME = "Tsering Palzom";
+
+const navLinks = [
+  { label: "Home", href: "#home" },
+  { label: "Products", href: "#products" },
+  { label: "About", href: "#about" },
+  { label: "Payment", href: "#payment" },
+  { label: "Contact", href: "#contact" },
+];
+
+const products = [
+  {
+    icon: Shirt,
+    title: "Rehabilitation Clothing",
+    badge: "Best Seller",
+    description:
+      "Specially designed adaptive clothing for individuals undergoing rehabilitation. Comfortable, functional, and dignified garments that support the recovery journey.",
+    color: "terracotta",
+  },
+  {
+    icon: Heart,
+    title: "Therapeutic Wear",
+    badge: "Medical Grade",
+    description:
+      "High-quality therapeutic garments crafted for comfort and healing. Includes compression wear, soft-touch fabrics, and ergonomic designs for daily use.",
+    color: "teal",
+  },
+  {
+    icon: Palette,
+    title: "Arts & Crafts",
+    badge: "Handmade",
+    description:
+      "Authentic handcrafted arts and artworks celebrating Tibetan and Himalayan culture. Each piece is unique, made with care and traditional techniques.",
+    color: "terracotta",
+  },
+  {
+    icon: ShoppingBag,
+    title: "Custom Orders",
+    badge: "Made to Order",
+    description:
+      "Personalized clothing and artwork commissions tailored to your specific needs. We work closely with you to create exactly what you envision.",
+    color: "teal",
+  },
+];
+
+export default function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  return (
+    <div className="min-h-screen bg-background font-body">
+      {/* NAVBAR */}
+      <header
+        className="sticky top-0 z-50 bg-[var(--tn-warm-white)] border-b border-border shadow-card"
+        data-ocid="nav.panel"
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <a
+              href="#home"
+              className="flex items-center gap-2 group"
+              data-ocid="nav.link"
+            >
+              <div className="w-9 h-9 rounded-full bg-[var(--tn-terracotta)] flex items-center justify-center">
+                <span className="text-white font-heading font-bold text-sm">
+                  TP
+                </span>
+              </div>
+              <span className="font-heading font-bold text-lg text-[var(--tn-dark)] leading-tight">
+                Tsering Palzom
+              </span>
+            </a>
+
+            {/* Desktop nav */}
+            <nav className="hidden md:flex items-center gap-1">
+              {navLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="px-4 py-2 text-sm font-medium text-[var(--tn-mid)] hover:text-[var(--tn-terracotta)] transition-colors rounded-md hover:bg-accent"
+                  data-ocid="nav.link"
+                >
+                  {link.label}
+                </a>
+              ))}
+              <a href={`tel:${PHONE_PRIMARY}`}>
+                <Button
+                  size="sm"
+                  className="ml-2 bg-[var(--tn-terracotta)] hover:bg-[var(--tn-terracotta-light)] text-white"
+                  data-ocid="nav.primary_button"
+                >
+                  <Phone className="w-3.5 h-3.5 mr-1.5" />
+                  Call Now
+                </Button>
+              </a>
+            </nav>
+
+            {/* Mobile hamburger */}
+            <button
+              className="md:hidden p-2 rounded-md text-[var(--tn-mid)] hover:text-[var(--tn-terracotta)] hover:bg-accent transition-colors"
+              onClick={() => setMenuOpen((v) => !v)}
+              aria-label="Toggle menu"
+              type="button"
+              data-ocid="nav.toggle"
+            >
+              {menuOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile menu */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.2 }}
+              className="md:hidden border-t border-border bg-[var(--tn-warm-white)] overflow-hidden"
+              data-ocid="nav.dropdown_menu"
+            >
+              <div className="px-4 py-3 flex flex-col gap-1">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className="px-3 py-2.5 text-sm font-medium text-[var(--tn-mid)] hover:text-[var(--tn-terracotta)] hover:bg-accent rounded-md transition-colors"
+                    onClick={() => setMenuOpen(false)}
+                    data-ocid="nav.link"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+                <a href={`tel:${PHONE_PRIMARY}`} className="mt-1">
+                  <Button
+                    className="w-full bg-[var(--tn-terracotta)] hover:bg-[var(--tn-terracotta-light)] text-white"
+                    data-ocid="nav.primary_button"
+                  >
+                    <Phone className="w-4 h-4 mr-2" />
+                    Call Now
+                  </Button>
+                </a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </header>
+
+      <main>
+        {/* HERO */}
+        <section
+          id="home"
+          className="relative overflow-hidden bg-gradient-to-br from-[oklch(0.30_0.06_196)] via-[oklch(0.22_0.025_45)] to-[oklch(0.28_0.04_42)] py-24 sm:py-32"
+          data-ocid="home.section"
+        >
+          {/* Decorative circles */}
+          <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-[var(--tn-terracotta)] opacity-10 translate-x-1/3 -translate-y-1/3" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-[var(--tn-teal)] opacity-10 -translate-x-1/3 translate-y-1/3" />
+
+          <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 32 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="max-w-2xl"
+            >
+              <Badge className="mb-4 bg-[var(--tn-terracotta)] text-white border-0 px-3 py-1 text-xs font-medium tracking-wide uppercase">
+                Rehabilitation &amp; Arts
+              </Badge>
+              <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4">
+                {COMPANY_NAME}
+              </h1>
+              <p className="text-lg sm:text-xl text-white/75 leading-relaxed mb-8">
+                Bringing comfort, dignity, and artistry together. We craft
+                premium rehabilitation clothing and authentic arts for those who
+                deserve the very best.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a href={`tel:${PHONE_PRIMARY}`}>
+                  <Button
+                    size="lg"
+                    className="bg-[var(--tn-terracotta)] hover:bg-[var(--tn-terracotta-light)] text-white shadow-warm w-full sm:w-auto"
+                    data-ocid="hero.primary_button"
+                  >
+                    <Phone className="w-4 h-4 mr-2" />
+                    Call Now
+                  </Button>
+                </a>
+                <a href="#products">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-white/40 text-white hover:bg-white/10 hover:text-white w-full sm:w-auto"
+                    data-ocid="hero.secondary_button"
+                  >
+                    View Products
+                    <ChevronRight className="w-4 h-4 ml-1" />
+                  </Button>
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* PRODUCTS */}
+        <section
+          id="products"
+          className="py-20 bg-background"
+          data-ocid="products.section"
+        >
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-14"
+            >
+              <h2 className="font-heading text-3xl sm:text-4xl font-bold text-[var(--tn-dark)] mb-3">
+                Our Products & Services
+              </h2>
+              <p className="text-[var(--tn-muted)] text-lg max-w-xl mx-auto">
+                Quality rehabilitation wear and handcrafted arts, made with love
+                and purpose.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {products.map((product, i) => (
+                <motion.div
+                  key={product.title}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  data-ocid={`products.item.${i + 1}`}
+                >
+                  <Card className="h-full flex flex-col border-border shadow-card hover:shadow-heavy transition-shadow group">
+                    <CardHeader className="pb-3">
+                      <div
+                        className={`w-12 h-12 rounded-xl flex items-center justify-center mb-3 ${
+                          product.color === "terracotta"
+                            ? "bg-[oklch(0.95_0.04_42)] text-[var(--tn-terracotta)]"
+                            : "bg-[oklch(0.92_0.04_196)] text-[var(--tn-teal)]"
+                        }`}
+                      >
+                        <product.icon className="w-6 h-6" />
+                      </div>
+                      <Badge
+                        variant="secondary"
+                        className={`self-start text-xs mb-1 ${
+                          product.color === "terracotta"
+                            ? "bg-[oklch(0.93_0.05_42)] text-[var(--tn-terracotta)]"
+                            : "bg-[oklch(0.90_0.05_196)] text-[var(--tn-teal)]"
+                        }`}
+                      >
+                        {product.badge}
+                      </Badge>
+                      <CardTitle className="font-heading text-lg text-[var(--tn-dark)]">
+                        {product.title}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="flex flex-col flex-1">
+                      <p className="text-sm text-[var(--tn-muted)] leading-relaxed flex-1 mb-4">
+                        {product.description}
+                      </p>
+                      <a href={`tel:${PHONE_PRIMARY}`}>
+                        <Button
+                          size="sm"
+                          className={`w-full ${
+                            product.color === "terracotta"
+                              ? "bg-[var(--tn-terracotta)] hover:bg-[var(--tn-terracotta-light)] text-white"
+                              : "bg-[var(--tn-teal)] hover:bg-[var(--tn-teal-light)] text-white"
+                          }`}
+                          data-ocid={`products.button.${i + 1}`}
+                        >
+                          <Phone className="w-3.5 h-3.5 mr-1.5" />
+                          Call to Order
+                        </Button>
+                      </a>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ABOUT */}
+        <section
+          id="about"
+          className="py-20 bg-[oklch(0.95_0.018_65)]"
+          data-ocid="about.section"
+        >
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -24 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <Badge className="mb-4 bg-[var(--tn-teal)] text-white border-0 text-xs uppercase tracking-wide">
+                  About Us
+                </Badge>
+                <h2 className="font-heading text-3xl sm:text-4xl font-bold text-[var(--tn-dark)] mb-4">
+                  Caring Through Clothing & Art
+                </h2>
+                <p className="text-[var(--tn-mid)] leading-relaxed mb-4">
+                  Tsering Palzom Company was founded with a singular vision: to
+                  provide high-quality rehabilitation clothing and handcrafted
+                  arts that honor both function and beauty. We believe every
+                  person deserves garments that support their healing journey
+                  with dignity and comfort.
+                </p>
+                <p className="text-[var(--tn-mid)] leading-relaxed mb-6">
+                  Rooted in Himalayan craftsmanship, our arts collection
+                  celebrates cultural heritage while our clothing line embraces
+                  modern therapeutic design. Every product is crafted with
+                  attention to detail and genuine care.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <div className="flex items-center gap-3 bg-[var(--tn-warm-white)] rounded-xl p-4 shadow-card flex-1">
+                    <div className="w-10 h-10 rounded-full bg-[oklch(0.93_0.05_42)] flex items-center justify-center">
+                      <Star className="w-5 h-5 text-[var(--tn-terracotta)]" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-[var(--tn-dark)] text-sm">
+                        Premium Quality
+                      </p>
+                      <p className="text-xs text-[var(--tn-muted)]">
+                        Every product
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 bg-[var(--tn-warm-white)] rounded-xl p-4 shadow-card flex-1">
+                    <div className="w-10 h-10 rounded-full bg-[oklch(0.90_0.05_196)] flex items-center justify-center">
+                      <Heart className="w-5 h-5 text-[var(--tn-teal)]" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-[var(--tn-dark)] text-sm">
+                        Made with Care
+                      </p>
+                      <p className="text-xs text-[var(--tn-muted)]">Always</p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 24 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <Card className="border-border shadow-heavy overflow-hidden">
+                  <div className="bg-gradient-to-br from-[var(--tn-terracotta)] to-[oklch(0.42_0.08_196)] p-8 text-white">
+                    <div className="w-20 h-20 rounded-full bg-white/20 flex items-center justify-center mx-auto mb-4">
+                      <span className="font-heading font-bold text-3xl text-white">
+                        TP
+                      </span>
+                    </div>
+                    <h3 className="font-heading text-2xl font-bold text-center">
+                      {OWNER_NAME}
+                    </h3>
+                    <p className="text-white/80 text-center text-sm mt-1">
+                      Owner &amp; Founder
+                    </p>
+                  </div>
+                  <CardContent className="p-6">
+                    <p className="text-[var(--tn-mid)] text-sm leading-relaxed mb-4">
+                      With deep expertise in rehabilitation needs and a passion
+                      for authentic craftsmanship, {OWNER_NAME} leads Tsering
+                      Palzom Company in delivering meaningful products that make
+                      a real difference in people's lives.
+                    </p>
+                    <Separator className="mb-4" />
+                    <div className="flex flex-col gap-2">
+                      <div className="flex items-center gap-2 text-sm text-[var(--tn-mid)]">
+                        <Phone className="w-4 h-4 text-[var(--tn-terracotta)] shrink-0" />
+                        <span>{PHONE_PRIMARY}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-[var(--tn-mid)]">
+                        <MapPin className="w-4 h-4 text-[var(--tn-teal)] shrink-0" />
+                        <span>Davis Fall, Pokhara</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* SCAN & PAY */}
+        <section
+          id="payment"
+          className="py-20 bg-background"
+          data-ocid="payment.section"
+        >
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
+              <h2 className="font-heading text-3xl sm:text-4xl font-bold text-[var(--tn-dark)] mb-3">
+                Scan &amp; Pay
+              </h2>
+              <p className="text-[var(--tn-muted)] text-lg">
+                Fast, secure payment via NIC Asia MoBank
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="max-w-sm mx-auto"
+              data-ocid="payment.card"
+            >
+              <Card className="border-border shadow-heavy overflow-hidden">
+                <div className="bg-gradient-to-br from-[oklch(0.30_0.06_196)] to-[oklch(0.22_0.025_45)] p-5 text-center">
+                  <div className="inline-flex items-center gap-2 bg-white/15 rounded-full px-4 py-1.5">
+                    <QrCode className="w-4 h-4 text-white" />
+                    <span className="text-white text-sm font-semibold">
+                      NIC Asia MoBank
+                    </span>
+                  </div>
+                </div>
+                <CardContent className="p-6">
+                  <div className="rounded-xl overflow-hidden border border-border shadow-card">
+                    <img
+                      src="/assets/uploads/img_6438-019d3f3b-cfe6-7058-97f0-09c0688c2561.jpeg"
+                      alt="NIC Asia MoBank QR Code — Tsering Palzom Company"
+                      className="w-full h-auto object-contain"
+                    />
+                  </div>
+                  <p className="text-center text-sm text-[var(--tn-muted)] mt-4">
+                    Scan with your banking app to pay
+                  </p>
+                  <p className="text-center text-xs text-[var(--tn-muted)] mt-1">
+                    {COMPANY_NAME}
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* CONTACT */}
+        <section
+          id="contact"
+          className="py-20 bg-gradient-to-br from-[oklch(0.28_0.05_196)] to-[oklch(0.22_0.04_42)]"
+          data-ocid="contact.section"
+        >
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
+              <h2 className="font-heading text-3xl sm:text-4xl font-bold text-white mb-3">
+                Get In Touch
+              </h2>
+              <p className="text-white/70 text-lg">
+                We'd love to hear from you. Call us today.
+              </p>
+            </motion.div>
+
+            <div className="flex justify-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                data-ocid="contact.card"
+                className="w-full max-w-xs"
+              >
+                <Card className="border-0 bg-white/10 text-white h-full">
+                  <CardContent className="p-6 text-center flex flex-col items-center gap-3">
+                    <div className="w-12 h-12 rounded-full bg-[var(--tn-terracotta)] flex items-center justify-center">
+                      <Phone className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-sm mb-1">Phone</p>
+                      <p className="text-white/80 text-sm">{PHONE_PRIMARY}</p>
+                    </div>
+                    <a href={`tel:${PHONE_PRIMARY}`} className="mt-auto w-full">
+                      <Button
+                        size="sm"
+                        className="w-full bg-[var(--tn-terracotta)] hover:bg-[var(--tn-terracotta-light)] text-white border-0"
+                        data-ocid="contact.primary_button"
+                      >
+                        Call Now
+                      </Button>
+                    </a>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </div>
+
+            {/* Location note */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="flex items-center justify-center gap-2 mt-8 text-white/60 text-sm"
+            >
+              <MapPin className="w-4 h-4" />
+              <span>Davis Fall, Pokhara</span>
+            </motion.div>
+          </div>
+        </section>
+      </main>
+
+      {/* FOOTER */}
+      <footer
+        className="bg-[var(--tn-dark)] text-white py-12"
+        data-ocid="footer.section"
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-8">
+            <div>
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-8 h-8 rounded-full bg-[var(--tn-terracotta)] flex items-center justify-center">
+                  <span className="text-white font-bold text-xs">TP</span>
+                </div>
+                <span className="font-heading font-bold text-white">
+                  Tsering Palzom
+                </span>
+              </div>
+              <p className="text-white/60 text-sm leading-relaxed">
+                Rehabilitation clothing and arts crafted with purpose and care.
+              </p>
+            </div>
+
+            <div>
+              <h4 className="font-semibold text-white mb-3 text-sm uppercase tracking-wide">
+                Quick Links
+              </h4>
+              <ul className="flex flex-col gap-2">
+                {navLinks.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      className="text-white/60 hover:text-[var(--tn-terracotta-light)] text-sm transition-colors"
+                      data-ocid="footer.link"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-semibold text-white mb-3 text-sm uppercase tracking-wide">
+                Contact
+              </h4>
+              <ul className="flex flex-col gap-2">
+                <li className="flex items-center gap-2 text-white/60 text-sm">
+                  <Phone className="w-3.5 h-3.5 shrink-0" />
+                  {PHONE_PRIMARY}
+                </li>
+                <li className="flex items-center gap-2 text-white/60 text-sm">
+                  <MapPin className="w-3.5 h-3.5 shrink-0" />
+                  Davis Fall, Pokhara
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <Separator className="bg-white/10 mb-6" />
+
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-white/40 text-xs">
+            <p>
+              &copy; {new Date().getFullYear()} {COMPANY_NAME}. All rights
+              reserved.
+            </p>
+            <p>
+              Built with{" "}
+              <span className="text-[var(--tn-terracotta-light)]">♥</span> using{" "}
+              <a
+                href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(window.location.hostname)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors"
+              >
+                caffeine.ai
+              </a>
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}

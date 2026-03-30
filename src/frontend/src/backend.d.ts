@@ -7,5 +7,15 @@ export interface None {
     __kind__: "None";
 }
 export type Option<T> = Some<T> | None;
+export interface Inquiry {
+    date: string;
+    name: string;
+    flightType: string;
+    message: string;
+    phone: string;
+}
 export interface backendInterface {
+    getAllInquiries(): Promise<Array<Inquiry>>;
+    getInquiryCount(): Promise<bigint>;
+    submitInquiry(name: string, phone: string, date: string, flightType: string, message: string): Promise<bigint>;
 }

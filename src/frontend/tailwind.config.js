@@ -16,9 +16,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ["Montserrat", "sans-serif"],
-        body: ["Open Sans", "sans-serif"],
-        poppins: ["Montserrat", "sans-serif"],
+        heading: ["Inter", "sans-serif"],
+        body: ["Inter", "sans-serif"],
       },
       colors: {
         border: "oklch(var(--border))",
@@ -71,13 +70,15 @@ export default {
           border: "oklch(var(--sidebar-border))",
           ring: "oklch(var(--sidebar-ring))",
         },
-        pg: {
-          orange: "var(--pg-orange)",
-          navy: "var(--pg-navy)",
-          sky: "var(--pg-sky)",
-          ice: "var(--pg-ice)",
-          header: "var(--pg-header)",
-          sheet: "var(--pg-sheet)",
+        pw: {
+          dark: "var(--pw-dark)",
+          mid: "var(--pw-mid)",
+          teal: "var(--pw-teal)",
+          "light-teal": "var(--pw-light-teal)",
+          sky: "var(--pw-sky)",
+          white: "var(--pw-white)",
+          body: "var(--pw-body)",
+          muted: "var(--pw-muted)",
         },
       },
       borderRadius: {
@@ -86,9 +87,8 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       boxShadow: {
-        xs: "0 1px 2px 0 rgba(0,0,0,0.05)",
-        sheet: "0 8px 48px 0 rgba(15,40,70,0.18)",
-        card: "0 2px 16px 0 rgba(15,40,70,0.10)",
+        card: "0 2px 16px 0 rgba(27,63,70,0.10)",
+        heavy: "0 8px 40px 0 rgba(27,63,70,0.20)",
       },
       keyframes: {
         "accordion-down": {
@@ -99,10 +99,15 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "fade-in-up": {
+          from: { opacity: "0", transform: "translateY(24px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-in-up": "fade-in-up 0.6s ease-out forwards",
       },
     },
   },

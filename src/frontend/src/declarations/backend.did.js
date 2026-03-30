@@ -8,10 +8,44 @@
 
 import { IDL } from '@icp-sdk/core/candid';
 
-export const idlService = IDL.Service({});
+export const Inquiry = IDL.Record({
+  'date' : IDL.Text,
+  'name' : IDL.Text,
+  'flightType' : IDL.Text,
+  'message' : IDL.Text,
+  'phone' : IDL.Text,
+});
+
+export const idlService = IDL.Service({
+  'getAllInquiries' : IDL.Func([], [IDL.Vec(Inquiry)], ['query']),
+  'getInquiryCount' : IDL.Func([], [IDL.Nat], ['query']),
+  'submitInquiry' : IDL.Func(
+      [IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text],
+      [IDL.Nat],
+      [],
+    ),
+});
 
 export const idlInitArgs = [];
 
-export const idlFactory = ({ IDL }) => { return IDL.Service({}); };
+export const idlFactory = ({ IDL }) => {
+  const Inquiry = IDL.Record({
+    'date' : IDL.Text,
+    'name' : IDL.Text,
+    'flightType' : IDL.Text,
+    'message' : IDL.Text,
+    'phone' : IDL.Text,
+  });
+  
+  return IDL.Service({
+    'getAllInquiries' : IDL.Func([], [IDL.Vec(Inquiry)], ['query']),
+    'getInquiryCount' : IDL.Func([], [IDL.Nat], ['query']),
+    'submitInquiry' : IDL.Func(
+        [IDL.Text, IDL.Text, IDL.Text, IDL.Text, IDL.Text],
+        [IDL.Nat],
+        [],
+      ),
+  });
+};
 
 export const init = ({ IDL }) => { return []; };

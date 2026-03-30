@@ -16,6 +16,7 @@ import {
   Mail,
   MapPin,
   Menu,
+  Navigation,
   Phone,
   QrCode,
   Send,
@@ -61,6 +62,14 @@ const services = [
     description:
       "Experience the freedom of ultralight aviation over the stunning Pokhara valley. Book your UltraLight flight with our experienced APPI certified pilot Tsering Dorjee.",
     color: "amber",
+  },
+  {
+    icon: Navigation,
+    title: "Pathao Booking",
+    badge: "New",
+    description:
+      "Book Pathao rides and delivery services through Hunuman Paragliding Company. Fast, reliable, and convenient Pathao booking assistance for your travel needs in Pokhara.",
+    color: "green",
   },
   {
     icon: Shield,
@@ -142,6 +151,12 @@ export default function App() {
           icon: "bg-amber-100 text-amber-600",
           badge: "bg-amber-100 text-amber-700",
           btn: "bg-amber-500 hover:bg-amber-400 text-white",
+        };
+      case "green":
+        return {
+          icon: "bg-green-100 text-green-600",
+          badge: "bg-green-100 text-green-700",
+          btn: "bg-green-600 hover:bg-green-500 text-white",
         };
       default:
         return {
@@ -338,8 +353,8 @@ export default function App() {
                 Our Services
               </h2>
               <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-                Professional paragliding and adventure services in Pokhara,
-                Nepal.
+                Professional paragliding, Pathao booking, and adventure services
+                in Pokhara, Nepal.
               </p>
             </motion.div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -690,7 +705,7 @@ export default function App() {
                 Book Now
               </Badge>
               <h2 className="font-heading text-3xl sm:text-4xl font-bold text-foreground mb-3">
-                Book a Flight
+                Book a Service
               </h2>
               <p className="text-muted-foreground">
                 Fill in the form below and we'll confirm your booking.
@@ -711,7 +726,7 @@ export default function App() {
                     Booking Request Sent!
                   </h3>
                   <p className="text-sky-600 text-sm mb-4">
-                    We'll contact you shortly to confirm your flight.
+                    We'll contact you shortly to confirm your booking.
                   </p>
                   <a href={`tel:${PHONE_PRIMARY}`}>
                     <Button className="bg-sky-500 hover:bg-sky-400 text-white">
@@ -796,6 +811,9 @@ export default function App() {
                           <SelectItem value="ultralight-flight">
                             UltraLight Flight
                           </SelectItem>
+                          <SelectItem value="pathao-booking">
+                            Pathao Booking
+                          </SelectItem>
                           <SelectItem value="siv-training">
                             SIV Training
                           </SelectItem>
@@ -842,7 +860,7 @@ export default function App() {
                           setBooking((b) => ({ ...b, message: e.target.value }))
                         }
                         className="w-full border border-border rounded-lg px-4 py-2.5 text-sm text-foreground bg-background focus:outline-none focus:ring-2 focus:ring-sky-400 transition resize-none"
-                        placeholder="Number of passengers, special requests..."
+                        placeholder="Number of passengers, pickup location, special requests..."
                         data-ocid="booking.textarea"
                       />
                     </div>
@@ -879,7 +897,7 @@ export default function App() {
                 Contact Us
               </h2>
               <p className="text-white/70 text-lg">
-                Ready to fly? Get in touch today.
+                Ready to fly or book? Get in touch today.
               </p>
             </motion.div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
@@ -966,7 +984,7 @@ export default function App() {
               </div>
               <p className="text-white/50 text-sm leading-relaxed">
                 APPI Certified Advanced SIV Pilot · License No. {LICENSE_NO} ·
-                Pro Tandem
+                Pro Tandem · Pathao Booking
               </p>
             </div>
             <div>

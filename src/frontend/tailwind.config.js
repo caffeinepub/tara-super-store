@@ -16,7 +16,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        poppins: ["Poppins", "sans-serif"],
+        heading: ["Montserrat", "sans-serif"],
+        body: ["Open Sans", "sans-serif"],
+        poppins: ["Montserrat", "sans-serif"],
       },
       colors: {
         border: "oklch(var(--border))",
@@ -69,14 +71,13 @@ export default {
           border: "oklch(var(--sidebar-border))",
           ring: "oklch(var(--sidebar-ring))",
         },
-        store: {
-          orange: "var(--store-orange)",
-          olive: "var(--store-olive)",
-          cream: "var(--store-cream)",
-          header: "var(--store-header)",
-          footer: "var(--store-footer)",
-          "pay-card": "var(--store-pay-card)",
-          gray: "var(--store-gray)",
+        pg: {
+          orange: "var(--pg-orange)",
+          navy: "var(--pg-navy)",
+          sky: "var(--pg-sky)",
+          ice: "var(--pg-ice)",
+          header: "var(--pg-header)",
+          sheet: "var(--pg-sheet)",
         },
       },
       borderRadius: {
@@ -86,7 +87,8 @@ export default {
       },
       boxShadow: {
         xs: "0 1px 2px 0 rgba(0,0,0,0.05)",
-        warm: "0 4px 24px 0 rgba(229,138,47,0.15)",
+        sheet: "0 8px 48px 0 rgba(15,40,70,0.18)",
+        card: "0 2px 16px 0 rgba(15,40,70,0.10)",
       },
       keyframes: {
         "accordion-down": {

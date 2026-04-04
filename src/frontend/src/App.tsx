@@ -14,6 +14,8 @@ import {
   Car,
   CheckCircle,
   ChevronRight,
+  CreditCard,
+  Globe,
   Mail,
   MapPin,
   Menu,
@@ -22,6 +24,8 @@ import {
   QrCode,
   Send,
   Shield,
+  ShoppingBag,
+  Stethoscope,
   Wind,
   X,
   Zap,
@@ -30,11 +34,11 @@ import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 
 const PHONE_PRIMARY = "9808091436";
-const PHONE_SECONDARY = "";
-const PHONE_PILOT = PHONE_PRIMARY;
-const COMPANY_NAME = "Hunuman Paragliding Company";
+const PHONE_SECONDARY = "9766047350";
+const COMPANY_NAME = "New Para World Tsering Dorjee Company";
 const OWNER_NAME = "Tsering Dorjee";
-const EMAIL = "hunumanparagliding@gmail.com";
+const EMAIL = "mypagentnewparaworld@gmail.com";
+const ADDRESS = "Brunch Office Company, Bandipur, Pokhara, Nepal Sub-Metro";
 const LICENSE_NO = "10359";
 
 const navLinks = [
@@ -58,7 +62,7 @@ const services = [
   },
   {
     icon: Zap,
-    title: "UltraLight Flight",
+    title: "UltraLight Flight Booking",
     badge: "Book Now",
     description:
       "Experience the freedom of ultralight aviation over the stunning Pokhara valley. Book your UltraLight flight with our experienced APPI certified pilot Tsering Dorjee.",
@@ -69,7 +73,7 @@ const services = [
     title: "Pathao Booking",
     badge: "New",
     description:
-      "Book Pathao rides and delivery services through Hunuman Paragliding Company. Fast, reliable, and convenient Pathao booking assistance for your travel needs in Pokhara.",
+      "Book Pathao rides and delivery services through New Para World Tsering Dorjee Company. Fast, reliable, and convenient Pathao booking assistance for your travel needs.",
     color: "green",
   },
   {
@@ -77,7 +81,7 @@ const services = [
     title: "inDrive Booking",
     badge: "Available",
     description:
-      "Book inDrive rides through Hunuman Paragliding Company. Affordable, transparent fare rides with inDrive — your travel, your price. Convenient booking assistance in Pokhara.",
+      "Book inDrive rides through New Para World Tsering Dorjee Company. Affordable, transparent fare rides — your travel, your price. Convenient booking assistance in Pokhara.",
     color: "indigo",
   },
   {
@@ -93,7 +97,7 @@ const services = [
     title: "Tour Packages",
     badge: "All Inclusive",
     description:
-      "Complete adventure tour packages including paragliding, sightseeing, and transportation. Customized itineraries for individuals and groups.",
+      "Complete adventure tour packages including paragliding, sightseeing, and transportation. Customized itineraries for individuals and groups in Nepal.",
     color: "sky",
   },
   {
@@ -103,6 +107,30 @@ const services = [
     description:
       "Bus, Jeep, and Bike rental services for travel around Pokhara and beyond. Reliable transport for your adventure activities and city tours.",
     color: "teal",
+  },
+  {
+    icon: CreditCard,
+    title: "Digital Wallet Sales",
+    badge: "Khalti / eSewa",
+    description:
+      "Buy and sell digital wallet credits — Khalti and eSewa — through New Para World Tsering Dorjee Company. Fast, secure top-ups for your digital payments.",
+    color: "violet",
+  },
+  {
+    icon: ShoppingBag,
+    title: "Daraz Sells Agent",
+    badge: "Agent",
+    description:
+      "Authorised Daraz sales agent. Browse, order, and receive products through our Daraz agent services. Call us to place your Daraz orders easily.",
+    color: "orange",
+  },
+  {
+    icon: Stethoscope,
+    title: "Acupuncture Therapy",
+    badge: "Therapist",
+    description:
+      "Professional acupuncture therapy, dry needling, cupping therapy, and moxibustion services by certified therapist Tsering Dorjee. Book your session today.",
+    color: "rose",
   },
 ];
 
@@ -123,6 +151,62 @@ const evaluations = [
   { name: "Assistant Instructor", status: "Empty" },
   { name: "APPI Instructor", status: "Empty" },
   { name: "Power / Paratrick", status: "Empty" },
+];
+
+const paymentMethods = [
+  {
+    name: "eSewa",
+    gradient: "from-green-600 to-green-800",
+    image:
+      "/assets/uploads/img_6445-019d3906-088f-73e6-abfb-afc405478758-1.jpeg",
+    alt: "eSewa QR Code — New Para World Tsering Dorjee Company",
+    caption: "Scan to pay via eSewa",
+    ocid: "payment.esewa.card",
+  },
+  {
+    name: "NIC Asia MoBank",
+    gradient: "from-blue-700 to-blue-900",
+    image:
+      "/assets/uploads/img_6438-019d37f8-acbc-74ea-a346-7a452942ecde-1.jpeg",
+    alt: "NIC Asia MoBank QR Code — New Para World Tsering Dorjee Company",
+    caption: "Scan to pay via NIC Asia MoBank",
+    ocid: "payment.nicasia.card",
+  },
+  {
+    name: "Khalti",
+    gradient: "from-purple-600 to-purple-900",
+    image:
+      "/assets/uploads/img_6444-019d3856-7507-7017-a64b-d346278ef17a-1.jpeg",
+    alt: "Khalti QR Code — New Para World Tsering Dorjee Company",
+    caption: "Scan to pay via Khalti",
+    ocid: "payment.khalti.card",
+  },
+  {
+    name: "cityPAY / Bank Wallet",
+    gradient: "from-teal-600 to-teal-800",
+    image:
+      "/assets/uploads/img_6446-019d3906-0a2a-77d7-ae00-7eee4e0ebbf8-2.jpeg",
+    alt: "cityPAY Bank Wallet QR — New Para World Tsering Dorjee Company",
+    caption: "Scan with your banking app",
+    ocid: "payment.citypay.card",
+  },
+  {
+    name: "MyPay",
+    gradient: "from-sky-600 to-sky-800",
+    image:
+      "/assets/uploads/img_6437-019d390d-1e81-76f8-9d6d-cbdd6618bb1a-1.jpeg",
+    alt: "MyPay QR Code — New Para World Tsering Dorjee Company",
+    caption: "Scan to pay via MyPay",
+    ocid: "payment.mypay.card",
+  },
+  {
+    name: "Bank Wallet / PayPal",
+    gradient: "from-blue-700 to-indigo-800",
+    image: null,
+    alt: "",
+    caption: "Pay via Bank Wallet or PayPal",
+    ocid: "payment.paypal.card",
+  },
 ];
 
 export default function App() {
@@ -173,6 +257,24 @@ export default function App() {
           badge: "bg-indigo-100 text-indigo-700",
           btn: "bg-indigo-600 hover:bg-indigo-500 text-white",
         };
+      case "violet":
+        return {
+          icon: "bg-violet-100 text-violet-600",
+          badge: "bg-violet-100 text-violet-700",
+          btn: "bg-violet-600 hover:bg-violet-500 text-white",
+        };
+      case "orange":
+        return {
+          icon: "bg-orange-100 text-orange-600",
+          badge: "bg-orange-100 text-orange-700",
+          btn: "bg-orange-500 hover:bg-orange-400 text-white",
+        };
+      case "rose":
+        return {
+          icon: "bg-rose-100 text-rose-600",
+          badge: "bg-rose-100 text-rose-700",
+          btn: "bg-rose-600 hover:bg-rose-500 text-white",
+        };
       default:
         return {
           icon: "bg-sky-100 text-sky-600",
@@ -197,10 +299,10 @@ export default function App() {
               data-ocid="nav.link"
             >
               <div className="w-9 h-9 rounded-full bg-sky-500 flex items-center justify-center">
-                <Wind className="w-5 h-5 text-white" />
+                <Globe className="w-5 h-5 text-white" />
               </div>
-              <span className="font-heading font-bold text-base text-white leading-tight">
-                Hunuman Paragliding
+              <span className="font-heading font-bold text-sm text-white leading-tight hidden sm:block">
+                New Para World
               </span>
             </a>
             <nav className="hidden md:flex items-center gap-1">
@@ -288,42 +390,45 @@ export default function App() {
           <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-sky-500 opacity-10 translate-x-1/2 -translate-y-1/2" />
           <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full bg-cyan-400 opacity-10 -translate-x-1/3 translate-y-1/3" />
           <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 32 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
-              className="max-w-2xl"
-            >
-              <Badge className="mb-4 bg-sky-500 text-white border-0 px-3 py-1 text-xs font-medium tracking-wide uppercase">
-                APPI Certified · Pro Tandem Pilot
-              </Badge>
-              <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4">
-                {COMPANY_NAME}
-              </h1>
-              <p className="text-lg sm:text-xl text-white/75 leading-relaxed mb-3">
-                Soar above Pokhara with Nepal's APPI certified Advanced SIV
-                pilot. Safe, thrilling, and unforgettable paragliding
-                experiences.
-              </p>
-              <p className="text-base text-white/60 mb-8">
-                Pilot:{" "}
-                <span className="text-sky-400 font-semibold">{OWNER_NAME}</span>{" "}
-                &nbsp;|&nbsp; APPI License No.{" "}
-                <span className="text-sky-400 font-semibold">{LICENSE_NO}</span>{" "}
-                &nbsp;|&nbsp; Advanced SIV Pilot
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3">
-                <a href={`tel:${PHONE_PRIMARY}`}>
-                  <Button
-                    size="lg"
-                    className="bg-sky-500 hover:bg-sky-400 text-white shadow-lg w-full sm:w-auto"
-                    data-ocid="hero.primary_button"
-                  >
-                    <Phone className="w-4 h-4 mr-2" />
-                    {PHONE_PRIMARY}
-                  </Button>
-                </a>
-                {PHONE_SECONDARY && (
+            <div className="flex flex-col lg:flex-row items-center lg:items-start gap-10">
+              <motion.div
+                initial={{ opacity: 0, y: 32 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
+                className="flex-1"
+              >
+                <Badge className="mb-4 bg-sky-500 text-white border-0 px-3 py-1 text-xs font-medium tracking-wide uppercase">
+                  APPI Certified · Pro Tandem Pilot
+                </Badge>
+                <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4">
+                  {COMPANY_NAME}
+                </h1>
+                <p className="text-lg sm:text-xl text-white/75 leading-relaxed mb-3">
+                  Paragliding, adventure tours, transport booking, digital
+                  wallet services and more in the heart of Pokhara, Nepal.
+                </p>
+                <p className="text-base text-white/60 mb-8">
+                  Owner:{" "}
+                  <span className="text-sky-400 font-semibold">
+                    {OWNER_NAME}
+                  </span>{" "}
+                  &nbsp;|&nbsp; APPI License No.{" "}
+                  <span className="text-sky-400 font-semibold">
+                    {LICENSE_NO}
+                  </span>{" "}
+                  &nbsp;|&nbsp; Advanced SIV Pilot
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <a href={`tel:${PHONE_PRIMARY}`}>
+                    <Button
+                      size="lg"
+                      className="bg-sky-500 hover:bg-sky-400 text-white shadow-lg w-full sm:w-auto"
+                      data-ocid="hero.primary_button"
+                    >
+                      <Phone className="w-4 h-4 mr-2" />
+                      {PHONE_PRIMARY}
+                    </Button>
+                  </a>
                   <a href={`tel:${PHONE_SECONDARY}`}>
                     <Button
                       size="lg"
@@ -335,18 +440,40 @@ export default function App() {
                       {PHONE_SECONDARY}
                     </Button>
                   </a>
-                )}
-                <a href="#booking">
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="border-white/30 text-white hover:bg-white/10 w-full sm:w-auto"
-                  >
-                    Book Flight <ChevronRight className="w-4 h-4 ml-1" />
-                  </Button>
-                </a>
-              </div>
-            </motion.div>
+                  <a href="#booking">
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      className="border-white/30 text-white hover:bg-white/10 w-full sm:w-auto"
+                    >
+                      Book Now <ChevronRight className="w-4 h-4 ml-1" />
+                    </Button>
+                  </a>
+                </div>
+              </motion.div>
+
+              {/* Owner photo */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+                className="shrink-0"
+              >
+                <div className="w-40 h-40 sm:w-52 sm:h-52 rounded-full overflow-hidden border-4 border-sky-400/50 shadow-2xl shadow-sky-900/40">
+                  <img
+                    src="/assets/uploads/img_5093-019d3860-119e-721d-8fd0-1d3350036da1-1.png"
+                    alt="Tsering Dorjee — Owner, New Para World Tsering Dorjee Company"
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <p className="text-center text-sky-400 text-sm font-semibold mt-3">
+                  {OWNER_NAME}
+                </p>
+                <p className="text-center text-white/50 text-xs">
+                  Acupuncture Therapist · APPI Pilot
+                </p>
+              </motion.div>
+            </div>
           </div>
         </section>
 
@@ -368,8 +495,8 @@ export default function App() {
                 Our Services
               </h2>
               <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-                Professional paragliding, Pathao booking, inDrive booking, and
-                adventure services in Pokhara, Nepal.
+                Paragliding, UltraLight flights, ride booking, therapy,
+                transport, digital wallet sales, and more in Pokhara, Nepal.
               </p>
             </motion.div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -381,7 +508,7 @@ export default function App() {
                     initial={{ opacity: 0, y: 24 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: i * 0.08 }}
+                    transition={{ duration: 0.5, delay: i * 0.07 }}
                     data-ocid={`services.item.${i + 1}`}
                   >
                     <Card className="h-full flex flex-col border-border shadow-md hover:shadow-lg transition-shadow">
@@ -424,7 +551,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* PILOT CREDENTIALS */}
+        {/* CREDENTIALS */}
         <section
           id="credentials"
           className="py-20 bg-[oklch(0.13_0.04_220)]"
@@ -446,7 +573,7 @@ export default function App() {
               </h2>
               <p className="text-white/60 text-base">
                 License No. {LICENSE_NO} &nbsp;|&nbsp; {OWNER_NAME}{" "}
-                &nbsp;|&nbsp; Tel: {PHONE_PILOT}
+                &nbsp;|&nbsp; Tel: +977 {PHONE_PRIMARY}
               </p>
             </motion.div>
 
@@ -482,70 +609,83 @@ export default function App() {
                       </div>
                       <div className="flex items-center gap-2 text-white/70">
                         <Shield className="w-4 h-4 text-sky-400 shrink-0" />
-                        <span>
-                          Pro Tandem:{" "}
-                          <span className="text-sky-400 font-semibold">
-                            Full
-                          </span>
-                        </span>
+                        <span>Advanced SIV Pilot</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-white/70">
+                        <CheckCircle className="w-4 h-4 text-sky-400 shrink-0" />
+                        <span>Acupuncture Therapist</span>
                       </div>
                       <div className="flex items-center gap-2 text-white/70">
                         <Phone className="w-4 h-4 text-sky-400 shrink-0" />
-                        <a
-                          href={`tel:${PHONE_PILOT}`}
-                          className="hover:text-sky-400 transition-colors"
-                        >
-                          {PHONE_PILOT}
-                        </a>
+                        <span>+977 {PHONE_PRIMARY}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-white/70">
+                        <Phone className="w-4 h-4 text-sky-400 shrink-0" />
+                        <span>+977 {PHONE_SECONDARY}</span>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
               </motion.div>
 
-              {/* Evaluation grid */}
+              {/* Evaluations table */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="lg:col-span-2"
               >
-                <Card className="border-white/10 bg-white/5 text-white">
+                <Card className="border-white/10 bg-white/5 overflow-hidden">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-white font-heading">
-                      APPI Evaluation Card
+                    <CardTitle className="text-white font-heading text-lg">
+                      Paragliding &amp; Power / Paratrick Evaluations
                     </CardTitle>
-                    <p className="text-white/50 text-sm">
+                    <p className="text-white/50 text-xs">
                       First Name: Tsering &nbsp;|&nbsp; Last Name: Dorjee
-                      &nbsp;|&nbsp; License No: {LICENSE_NO}
+                      &nbsp;|&nbsp; License No. {LICENSE_NO}
                     </p>
                   </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {evaluations.map((ev) => (
-                        <div
-                          key={ev.name}
-                          className={`flex items-center justify-between rounded-lg px-3 py-2 ${
-                            ev.status === "Full"
-                              ? "bg-sky-500/20 border border-sky-500/40"
-                              : "bg-white/5 border border-white/10"
-                          }`}
-                        >
-                          <span className="text-sm text-white/80">
-                            {ev.name}
-                          </span>
-                          <Badge
-                            className={`text-xs border-0 ${
-                              ev.status === "Full"
-                                ? "bg-sky-500 text-white"
-                                : "bg-white/10 text-white/50"
-                            }`}
-                          >
-                            {ev.status}
-                          </Badge>
-                        </div>
-                      ))}
+                  <CardContent className="p-0">
+                    <div className="overflow-x-auto">
+                      <table className="w-full text-sm">
+                        <thead>
+                          <tr className="border-b border-white/10">
+                            <th className="text-left py-3 px-5 text-white/50 font-medium text-xs uppercase tracking-wide">
+                              Course / Level
+                            </th>
+                            <th className="text-center py-3 px-5 text-white/50 font-medium text-xs uppercase tracking-wide">
+                              Status
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {evaluations.map((ev, i) => (
+                            <tr
+                              key={ev.name}
+                              className={`border-b border-white/5 ${
+                                i % 2 === 0 ? "bg-white/0" : "bg-white/[0.02]"
+                              }`}
+                              data-ocid={`credentials.row.${i + 1}`}
+                            >
+                              <td className="py-2.5 px-5 text-white/80">
+                                {ev.name}
+                              </td>
+                              <td className="py-2.5 px-5 text-center">
+                                <Badge
+                                  className={
+                                    ev.status === "Full"
+                                      ? "bg-sky-500 text-white border-0 text-xs"
+                                      : "bg-white/10 text-white/50 border-0 text-xs"
+                                  }
+                                >
+                                  {ev.status}
+                                </Badge>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
                     </div>
                   </CardContent>
                 </Card>
@@ -560,19 +700,19 @@ export default function App() {
           className="py-20 bg-background"
           data-ocid="license.section"
         >
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-center mb-12"
+              className="text-center mb-10"
             >
               <Badge className="mb-4 bg-sky-500 text-white border-0 text-xs uppercase tracking-wide">
-                Verified
+                Official Certificate
               </Badge>
               <h2 className="font-heading text-3xl sm:text-4xl font-bold text-foreground mb-3">
-                License & Rating Proof
+                License &amp; Rating Proof
               </h2>
               <p className="text-muted-foreground">
                 APPI Member Proof Rating Certificate — {OWNER_NAME}, License No.{" "}
@@ -583,19 +723,15 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.97 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
             >
               <Card className="border-border shadow-lg overflow-hidden">
-                <div className="bg-gradient-to-r from-sky-600 to-sky-800 p-5 flex items-center gap-3">
-                  <Award className="w-6 h-6 text-white" />
-                  <div>
-                    <p className="text-white font-semibold">
+                <div className="bg-gradient-to-br from-sky-700 to-sky-900 p-5 text-center">
+                  <div className="inline-flex items-center gap-2 bg-white/15 rounded-full px-4 py-1.5">
+                    <Award className="w-4 h-4 text-white" />
+                    <span className="text-white text-sm font-semibold">
                       APPI Member Proof Rating
-                    </p>
-                    <p className="text-white/70 text-sm">
-                      License No. {LICENSE_NO} · APPI 3 Pilot / Advanced SIV ·
-                      Blue Sky Paragliding
-                    </p>
+                    </span>
                   </div>
                 </div>
                 <CardContent className="p-4">
@@ -628,113 +764,63 @@ export default function App() {
                 Scan &amp; Pay
               </h2>
               <p className="text-muted-foreground text-lg">
-                Pay securely via MyPay, cityPAY bank wallet, or PayPal
+                Pay securely via eSewa, NIC Asia MoBank, Khalti, cityPAY, MyPay,
+                Bank Wallet or PayPal
               </p>
             </motion.div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.96 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                data-ocid="payment.card.mypay"
-              >
-                <Card className="border-border shadow-lg overflow-hidden h-full">
-                  <div className="bg-gradient-to-br from-sky-600 to-sky-800 p-5 text-center">
-                    <div className="inline-flex items-center gap-2 bg-white/15 rounded-full px-4 py-1.5">
-                      <QrCode className="w-4 h-4 text-white" />
-                      <span className="text-white text-sm font-semibold">
-                        MyPay
-                      </span>
-                    </div>
-                  </div>
-                  <CardContent className="p-6">
-                    <div className="rounded-xl overflow-hidden border border-border shadow-sm">
-                      <img
-                        src="/assets/uploads/img_6437-019d390d-1e81-76f8-9d6d-cbdd6618bb1a-1.jpeg"
-                        alt="MyPay QR Code — Hunuman Paragliding"
-                        className="w-full h-auto object-contain"
-                      />
-                    </div>
-                    <p className="text-center text-sm text-muted-foreground mt-4">
-                      Scan to pay via MyPay
-                    </p>
-                    <p className="text-center text-xs text-muted-foreground mt-1">
-                      {COMPANY_NAME}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.96 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                data-ocid="payment.card.citypay"
-              >
-                <Card className="border-border shadow-lg overflow-hidden h-full">
-                  <div className="bg-gradient-to-br from-teal-600 to-teal-800 p-5 text-center">
-                    <div className="inline-flex items-center gap-2 bg-white/15 rounded-full px-4 py-1.5">
-                      <QrCode className="w-4 h-4 text-white" />
-                      <span className="text-white text-sm font-semibold">
-                        cityPAY / Bank Wallet
-                      </span>
-                    </div>
-                  </div>
-                  <CardContent className="p-6">
-                    <div className="rounded-xl overflow-hidden border border-border shadow-sm">
-                      <img
-                        src="/assets/uploads/img_6446-019d390d-1ec6-764d-b06d-19c1250ca14f-2.jpeg"
-                        alt="cityPAY Bank Wallet QR — Hunuman Paragliding"
-                        className="w-full h-auto object-contain"
-                      />
-                    </div>
-                    <p className="text-center text-sm text-muted-foreground mt-4">
-                      Scan with your banking app
-                    </p>
-                    <p className="text-center text-xs text-muted-foreground mt-1">
-                      {COMPANY_NAME}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.96 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                data-ocid="payment.card.paypal"
-              >
-                <Card className="border-border shadow-lg overflow-hidden h-full">
-                  <div className="bg-gradient-to-br from-blue-700 to-indigo-800 p-5 text-center">
-                    <div className="inline-flex items-center gap-2 bg-white/15 rounded-full px-4 py-1.5">
-                      <QrCode className="w-4 h-4 text-white" />
-                      <span className="text-white text-sm font-semibold">
-                        Bank Wallet / PayPal
-                      </span>
-                    </div>
-                  </div>
-                  <CardContent className="p-6">
-                    <div className="rounded-xl overflow-hidden border border-border shadow-sm bg-muted flex items-center justify-center min-h-[180px]">
-                      <div className="text-center p-6">
-                        <QrCode className="w-16 h-16 text-muted-foreground mx-auto mb-3" />
-                        <p className="text-sm text-muted-foreground font-medium">
-                          QR Code Coming Soon
-                        </p>
-                        <p className="text-xs text-muted-foreground mt-1">
-                          Upload your Bank Wallet / PayPal QR
-                        </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {paymentMethods.map((pm, i) => (
+                <motion.div
+                  key={pm.name}
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                  data-ocid={pm.ocid}
+                >
+                  <Card className="border-border shadow-lg overflow-hidden h-full">
+                    <div
+                      className={`bg-gradient-to-br ${pm.gradient} p-5 text-center`}
+                    >
+                      <div className="inline-flex items-center gap-2 bg-white/15 rounded-full px-4 py-1.5">
+                        <QrCode className="w-4 h-4 text-white" />
+                        <span className="text-white text-sm font-semibold">
+                          {pm.name}
+                        </span>
                       </div>
                     </div>
-                    <p className="text-center text-sm text-muted-foreground mt-4">
-                      Pay via Bank Wallet or PayPal
-                    </p>
-                    <p className="text-center text-xs text-muted-foreground mt-1">
-                      {COMPANY_NAME}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
+                    <CardContent className="p-6">
+                      {pm.image ? (
+                        <div className="rounded-xl overflow-hidden border border-border shadow-sm">
+                          <img
+                            src={pm.image}
+                            alt={pm.alt}
+                            className="w-full h-auto object-contain"
+                          />
+                        </div>
+                      ) : (
+                        <div className="rounded-xl overflow-hidden border border-border shadow-sm bg-muted flex items-center justify-center min-h-[180px]">
+                          <div className="text-center p-6">
+                            <QrCode className="w-16 h-16 text-muted-foreground mx-auto mb-3" />
+                            <p className="text-sm text-muted-foreground font-medium">
+                              QR Code Coming Soon
+                            </p>
+                            <p className="text-xs text-muted-foreground mt-1">
+                              Upload your Bank Wallet / PayPal QR
+                            </p>
+                          </div>
+                        </div>
+                      )}
+                      <p className="text-center text-sm text-muted-foreground mt-4">
+                        {pm.caption}
+                      </p>
+                      <p className="text-center text-xs text-muted-foreground mt-1">
+                        {COMPANY_NAME}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
@@ -760,7 +846,7 @@ export default function App() {
                 Book a Service
               </h2>
               <p className="text-muted-foreground">
-                Fill in the form below and we'll confirm your booking.
+                Fill in the form below and we&apos;ll confirm your booking.
               </p>
             </motion.div>
             {submitted ? (
@@ -774,162 +860,205 @@ export default function App() {
                   data-ocid="booking.success_state"
                 >
                   <CheckCircle className="w-12 h-12 text-sky-500 mx-auto mb-4" />
-                  <h3 className="font-heading text-xl font-bold text-sky-700 mb-2">
-                    Booking Request Sent!
+                  <h3 className="font-heading text-2xl font-bold text-foreground mb-2">
+                    Booking Received!
                   </h3>
-                  <p className="text-sky-600 text-sm mb-4">
-                    We'll contact you shortly to confirm your booking.
+                  <p className="text-muted-foreground mb-6">
+                    Thank you, we will contact you shortly to confirm your
+                    booking.
                   </p>
-                  <a href={`tel:${PHONE_PRIMARY}`}>
-                    <Button className="bg-sky-500 hover:bg-sky-400 text-white">
-                      <Phone className="w-4 h-4 mr-2" />
-                      Call {PHONE_PRIMARY}
-                    </Button>
-                  </a>
+                  <Button
+                    onClick={() => {
+                      setSubmitted(false);
+                      setBooking({
+                        name: "",
+                        phone: "",
+                        date: "",
+                        serviceType: "",
+                        message: "",
+                      });
+                    }}
+                    className="bg-sky-500 hover:bg-sky-400 text-white"
+                    data-ocid="booking.secondary_button"
+                  >
+                    Book Another
+                  </Button>
                 </Card>
               </motion.div>
             ) : (
-              <Card className="border-border shadow-md">
-                <CardContent className="p-8">
-                  <form
-                    onSubmit={handleBooking}
-                    className="flex flex-col gap-5"
-                  >
-                    <div>
-                      <label
-                        htmlFor="booking-name"
-                        className="block text-sm font-medium text-foreground mb-1.5"
-                      >
-                        Full Name *
-                      </label>
-                      <input
-                        id="booking-name"
-                        type="text"
-                        required
-                        value={booking.name}
-                        onChange={(e) =>
-                          setBooking((b) => ({ ...b, name: e.target.value }))
-                        }
-                        className="w-full border border-border rounded-lg px-4 py-2.5 text-sm text-foreground bg-background focus:outline-none focus:ring-2 focus:ring-sky-400 transition"
-                        placeholder="Your full name"
-                        data-ocid="booking.input"
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="booking-phone"
-                        className="block text-sm font-medium text-foreground mb-1.5"
-                      >
-                        Phone Number *
-                      </label>
-                      <input
-                        id="booking-phone"
-                        type="tel"
-                        required
-                        value={booking.phone}
-                        onChange={(e) =>
-                          setBooking((b) => ({ ...b, phone: e.target.value }))
-                        }
-                        className="w-full border border-border rounded-lg px-4 py-2.5 text-sm text-foreground bg-background focus:outline-none focus:ring-2 focus:ring-sky-400 transition"
-                        placeholder="Your phone number"
-                        data-ocid="booking.input"
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="booking-service"
-                        className="block text-sm font-medium text-foreground mb-1.5"
-                      >
-                        Service Type *
-                      </label>
-                      <Select
-                        required
-                        value={booking.serviceType}
-                        onValueChange={(val) =>
-                          setBooking((b) => ({ ...b, serviceType: val }))
-                        }
-                      >
-                        <SelectTrigger
-                          id="booking-service"
-                          className="w-full focus:ring-sky-400"
-                          data-ocid="booking.select"
-                        >
-                          <SelectValue placeholder="Select a service..." />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="tandem-paragliding">
-                            Tandem Paragliding
-                          </SelectItem>
-                          <SelectItem value="ultralight-flight">
-                            UltraLight Flight
-                          </SelectItem>
-                          <SelectItem value="pathao-booking">
-                            Pathao Booking
-                          </SelectItem>
-                          <SelectItem value="indrive-booking">
-                            inDrive Booking
-                          </SelectItem>
-                          <SelectItem value="siv-training">
-                            SIV Training
-                          </SelectItem>
-                          <SelectItem value="tour-package">
-                            Tour Package
-                          </SelectItem>
-                          <SelectItem value="transport-service">
-                            Transport Service
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="booking-date"
-                        className="block text-sm font-medium text-foreground mb-1.5"
-                      >
-                        Preferred Date *
-                      </label>
-                      <input
-                        id="booking-date"
-                        type="date"
-                        required
-                        value={booking.date}
-                        onChange={(e) =>
-                          setBooking((b) => ({ ...b, date: e.target.value }))
-                        }
-                        className="w-full border border-border rounded-lg px-4 py-2.5 text-sm text-foreground bg-background focus:outline-none focus:ring-2 focus:ring-sky-400 transition"
-                        data-ocid="booking.input"
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="booking-message"
-                        className="block text-sm font-medium text-foreground mb-1.5"
-                      >
-                        Message
-                      </label>
-                      <textarea
-                        id="booking-message"
-                        rows={3}
-                        value={booking.message}
-                        onChange={(e) =>
-                          setBooking((b) => ({ ...b, message: e.target.value }))
-                        }
-                        className="w-full border border-border rounded-lg px-4 py-2.5 text-sm text-foreground bg-background focus:outline-none focus:ring-2 focus:ring-sky-400 transition resize-none"
-                        placeholder="Number of passengers, pickup location, special requests..."
-                        data-ocid="booking.textarea"
-                      />
-                    </div>
-                    <Button
-                      type="submit"
-                      className="bg-sky-500 hover:bg-sky-400 text-white w-full py-3 text-base font-semibold"
-                      data-ocid="booking.submit_button"
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+              >
+                <Card
+                  className="border-border shadow-lg"
+                  data-ocid="booking.card"
+                >
+                  <CardContent className="p-6 sm:p-8">
+                    <form
+                      onSubmit={handleBooking}
+                      className="flex flex-col gap-5"
                     >
-                      <Send className="w-4 h-4 mr-2" />
-                      Submit Booking
-                    </Button>
-                  </form>
-                </CardContent>
-              </Card>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div>
+                          <label
+                            htmlFor="booking-name"
+                            className="block text-sm font-medium text-foreground mb-1.5"
+                          >
+                            Full Name
+                          </label>
+                          <input
+                            id="booking-name"
+                            type="text"
+                            required
+                            value={booking.name}
+                            onChange={(e) =>
+                              setBooking((b) => ({
+                                ...b,
+                                name: e.target.value,
+                              }))
+                            }
+                            className="w-full border border-border rounded-lg px-4 py-2.5 text-sm text-foreground bg-background focus:outline-none focus:ring-2 focus:ring-sky-400 transition"
+                            placeholder="Your full name"
+                            data-ocid="booking.input"
+                          />
+                        </div>
+                        <div>
+                          <label
+                            htmlFor="booking-phone"
+                            className="block text-sm font-medium text-foreground mb-1.5"
+                          >
+                            Phone Number
+                          </label>
+                          <input
+                            id="booking-phone"
+                            type="tel"
+                            required
+                            value={booking.phone}
+                            onChange={(e) =>
+                              setBooking((b) => ({
+                                ...b,
+                                phone: e.target.value,
+                              }))
+                            }
+                            className="w-full border border-border rounded-lg px-4 py-2.5 text-sm text-foreground bg-background focus:outline-none focus:ring-2 focus:ring-sky-400 transition"
+                            placeholder="Your phone number"
+                            data-ocid="booking.input"
+                          />
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div>
+                          <label
+                            htmlFor="booking-date"
+                            className="block text-sm font-medium text-foreground mb-1.5"
+                          >
+                            Preferred Date
+                          </label>
+                          <input
+                            id="booking-date"
+                            type="date"
+                            value={booking.date}
+                            onChange={(e) =>
+                              setBooking((b) => ({
+                                ...b,
+                                date: e.target.value,
+                              }))
+                            }
+                            className="w-full border border-border rounded-lg px-4 py-2.5 text-sm text-foreground bg-background focus:outline-none focus:ring-2 focus:ring-sky-400 transition"
+                            data-ocid="booking.input"
+                          />
+                        </div>
+                        <div>
+                          <label
+                            htmlFor="booking-service"
+                            className="block text-sm font-medium text-foreground mb-1.5"
+                          >
+                            Service Type
+                          </label>
+                          <Select
+                            value={booking.serviceType}
+                            onValueChange={(v) =>
+                              setBooking((b) => ({ ...b, serviceType: v }))
+                            }
+                          >
+                            <SelectTrigger
+                              id="booking-service"
+                              data-ocid="booking.select"
+                            >
+                              <SelectValue placeholder="Select a service" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="tandem-paragliding">
+                                Tandem Paragliding
+                              </SelectItem>
+                              <SelectItem value="ultralight-flight">
+                                UltraLight Flight Booking
+                              </SelectItem>
+                              <SelectItem value="pathao-booking">
+                                Pathao Booking
+                              </SelectItem>
+                              <SelectItem value="indrive-booking">
+                                inDrive Booking
+                              </SelectItem>
+                              <SelectItem value="siv-training">
+                                SIV Training
+                              </SelectItem>
+                              <SelectItem value="tour-packages">
+                                Tour Packages
+                              </SelectItem>
+                              <SelectItem value="transport-services">
+                                Transport Services
+                              </SelectItem>
+                              <SelectItem value="digital-wallet-sales">
+                                Digital Wallet Sales (Khalti / eSewa)
+                              </SelectItem>
+                              <SelectItem value="daraz-agent">
+                                Daraz Sells Agent
+                              </SelectItem>
+                              <SelectItem value="acupuncture-therapy">
+                                Acupuncture Therapy
+                              </SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                      </div>
+                      <div>
+                        <label
+                          htmlFor="booking-message"
+                          className="block text-sm font-medium text-foreground mb-1.5"
+                        >
+                          Message
+                        </label>
+                        <textarea
+                          id="booking-message"
+                          rows={3}
+                          value={booking.message}
+                          onChange={(e) =>
+                            setBooking((b) => ({
+                              ...b,
+                              message: e.target.value,
+                            }))
+                          }
+                          className="w-full border border-border rounded-lg px-4 py-2.5 text-sm text-foreground bg-background focus:outline-none focus:ring-2 focus:ring-sky-400 transition resize-none"
+                          placeholder="Number of passengers, pickup location, special requests..."
+                          data-ocid="booking.textarea"
+                        />
+                      </div>
+                      <Button
+                        type="submit"
+                        className="bg-sky-500 hover:bg-sky-400 text-white w-full py-3 text-base font-semibold"
+                        data-ocid="booking.submit_button"
+                      >
+                        <Send className="w-4 h-4 mr-2" />
+                        Submit Booking
+                      </Button>
+                    </form>
+                  </CardContent>
+                </Card>
+              </motion.div>
             )}
           </div>
         </section>
@@ -952,15 +1081,22 @@ export default function App() {
                 Contact Us
               </h2>
               <p className="text-white/70 text-lg">
-                Ready to fly or book? Get in touch today.
+                Ready to book or have a question? Get in touch today.
               </p>
             </motion.div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
               {[
                 {
-                  label: "Owner Mobile",
+                  label: "Phone 1",
                   value: PHONE_PRIMARY,
                   href: `tel:${PHONE_PRIMARY}`,
+                  icon: "phone",
+                },
+                {
+                  label: "Phone 2",
+                  value: PHONE_SECONDARY,
+                  href: `tel:${PHONE_SECONDARY}`,
+                  icon: "phone",
                 },
                 {
                   label: "Email",
@@ -998,6 +1134,7 @@ export default function App() {
                         <Button
                           size="sm"
                           className="w-full bg-sky-500 hover:bg-sky-400 text-white border-0"
+                          data-ocid={`contact.button.${i + 1}`}
                         >
                           {item.icon === "mail" ? "Send Email" : "Call Now"}
                         </Button>
@@ -1015,7 +1152,7 @@ export default function App() {
               className="flex items-center justify-center gap-2 mt-8 text-white/50 text-sm"
             >
               <MapPin className="w-4 h-4" />
-              <span>Pokhara, Nepal</span>
+              <span>{ADDRESS}</span>
             </motion.div>
           </div>
         </section>
@@ -1031,15 +1168,16 @@ export default function App() {
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-8 h-8 rounded-full bg-sky-500 flex items-center justify-center">
-                  <Wind className="w-4 h-4 text-white" />
+                  <Globe className="w-4 h-4 text-white" />
                 </div>
-                <span className="font-heading font-bold text-white">
-                  Hunuman Paragliding
+                <span className="font-heading font-bold text-white text-sm">
+                  New Para World
                 </span>
               </div>
               <p className="text-white/50 text-sm leading-relaxed">
                 APPI Certified Advanced SIV Pilot · License No. {LICENSE_NO} ·
-                Pro Tandem · Pathao Booking · inDrive Booking
+                Pro Tandem · Acupuncture Therapist · Pathao &amp; inDrive
+                Booking
               </p>
             </div>
             <div>
@@ -1069,19 +1207,17 @@ export default function App() {
                   <Phone className="w-3.5 h-3.5 shrink-0" />
                   {PHONE_PRIMARY}
                 </li>
-                {PHONE_SECONDARY && (
-                  <li className="flex items-center gap-2 text-white/50 text-sm">
-                    <Phone className="w-3.5 h-3.5 shrink-0" />
-                    {PHONE_SECONDARY}
-                  </li>
-                )}
+                <li className="flex items-center gap-2 text-white/50 text-sm">
+                  <Phone className="w-3.5 h-3.5 shrink-0" />
+                  {PHONE_SECONDARY}
+                </li>
                 <li className="flex items-center gap-2 text-white/50 text-sm">
                   <Mail className="w-3.5 h-3.5 shrink-0" />
                   {EMAIL}
                 </li>
-                <li className="flex items-center gap-2 text-white/50 text-sm">
-                  <MapPin className="w-3.5 h-3.5 shrink-0" />
-                  Pokhara, Nepal
+                <li className="flex items-start gap-2 text-white/50 text-sm">
+                  <MapPin className="w-3.5 h-3.5 shrink-0 mt-0.5" />
+                  {ADDRESS}
                 </li>
               </ul>
             </div>
@@ -1093,9 +1229,20 @@ export default function App() {
               reserved.
             </p>
             <p>
-              Pilot: {OWNER_NAME} | APPI SIV License No. {LICENSE_NO} | Advanced
-              SIV Pilot
+              Pilot: {OWNER_NAME} · APPI License No. {LICENSE_NO} · Advanced SIV
+              Pilot · Acupuncture Therapist
             </p>
+          </div>
+          <div className="mt-4 text-center text-white/20 text-xs">
+            <a
+              href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(typeof window !== "undefined" ? window.location.hostname : "")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white/40 transition-colors"
+            >
+              &copy; {new Date().getFullYear()}. Built with love using
+              caffeine.ai
+            </a>
           </div>
         </div>
       </footer>

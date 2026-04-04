@@ -11,6 +11,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import {
   Award,
+  Car,
   CheckCircle,
   ChevronRight,
   Mail,
@@ -70,6 +71,14 @@ const services = [
     description:
       "Book Pathao rides and delivery services through Hunuman Paragliding Company. Fast, reliable, and convenient Pathao booking assistance for your travel needs in Pokhara.",
     color: "green",
+  },
+  {
+    icon: Car,
+    title: "inDrive Booking",
+    badge: "Available",
+    description:
+      "Book inDrive rides through Hunuman Paragliding Company. Affordable, transparent fare rides with inDrive — your travel, your price. Convenient booking assistance in Pokhara.",
+    color: "indigo",
   },
   {
     icon: Shield,
@@ -157,6 +166,12 @@ export default function App() {
           icon: "bg-green-100 text-green-600",
           badge: "bg-green-100 text-green-700",
           btn: "bg-green-600 hover:bg-green-500 text-white",
+        };
+      case "indigo":
+        return {
+          icon: "bg-indigo-100 text-indigo-600",
+          badge: "bg-indigo-100 text-indigo-700",
+          btn: "bg-indigo-600 hover:bg-indigo-500 text-white",
         };
       default:
         return {
@@ -353,8 +368,8 @@ export default function App() {
                 Our Services
               </h2>
               <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-                Professional paragliding, Pathao booking, and adventure services
-                in Pokhara, Nepal.
+                Professional paragliding, Pathao booking, inDrive booking, and
+                adventure services in Pokhara, Nepal.
               </p>
             </motion.div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -613,10 +628,10 @@ export default function App() {
                 Scan &amp; Pay
               </h2>
               <p className="text-muted-foreground text-lg">
-                Pay securely via MyPay or cityPAY bank wallet
+                Pay securely via MyPay, cityPAY bank wallet, or PayPal
               </p>
             </motion.div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
               <motion.div
                 initial={{ opacity: 0, scale: 0.96 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -676,6 +691,43 @@ export default function App() {
                     </div>
                     <p className="text-center text-sm text-muted-foreground mt-4">
                       Scan with your banking app
+                    </p>
+                    <p className="text-center text-xs text-muted-foreground mt-1">
+                      {COMPANY_NAME}
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.96 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                data-ocid="payment.card.paypal"
+              >
+                <Card className="border-border shadow-lg overflow-hidden h-full">
+                  <div className="bg-gradient-to-br from-blue-700 to-indigo-800 p-5 text-center">
+                    <div className="inline-flex items-center gap-2 bg-white/15 rounded-full px-4 py-1.5">
+                      <QrCode className="w-4 h-4 text-white" />
+                      <span className="text-white text-sm font-semibold">
+                        Bank Wallet / PayPal
+                      </span>
+                    </div>
+                  </div>
+                  <CardContent className="p-6">
+                    <div className="rounded-xl overflow-hidden border border-border shadow-sm bg-muted flex items-center justify-center min-h-[180px]">
+                      <div className="text-center p-6">
+                        <QrCode className="w-16 h-16 text-muted-foreground mx-auto mb-3" />
+                        <p className="text-sm text-muted-foreground font-medium">
+                          QR Code Coming Soon
+                        </p>
+                        <p className="text-xs text-muted-foreground mt-1">
+                          Upload your Bank Wallet / PayPal QR
+                        </p>
+                      </div>
+                    </div>
+                    <p className="text-center text-sm text-muted-foreground mt-4">
+                      Pay via Bank Wallet or PayPal
                     </p>
                     <p className="text-center text-xs text-muted-foreground mt-1">
                       {COMPANY_NAME}
@@ -814,6 +866,9 @@ export default function App() {
                           <SelectItem value="pathao-booking">
                             Pathao Booking
                           </SelectItem>
+                          <SelectItem value="indrive-booking">
+                            inDrive Booking
+                          </SelectItem>
                           <SelectItem value="siv-training">
                             SIV Training
                           </SelectItem>
@@ -900,7 +955,7 @@ export default function App() {
                 Ready to fly or book? Get in touch today.
               </p>
             </motion.div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
               {[
                 {
                   label: "Owner Mobile",
@@ -984,7 +1039,7 @@ export default function App() {
               </div>
               <p className="text-white/50 text-sm leading-relaxed">
                 APPI Certified Advanced SIV Pilot · License No. {LICENSE_NO} ·
-                Pro Tandem · Pathao Booking
+                Pro Tandem · Pathao Booking · inDrive Booking
               </p>
             </div>
             <div>

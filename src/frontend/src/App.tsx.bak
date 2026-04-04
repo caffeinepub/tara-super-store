@@ -3,10 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import {
+  Car,
   ChevronRight,
   Heart,
   MapPin,
   Menu,
+  Navigation,
   Palette,
   Phone,
   QrCode,
@@ -61,6 +63,22 @@ const products = [
     badge: "Made to Order",
     description:
       "Personalized clothing and artwork commissions tailored to your specific needs. We work closely with you to create exactly what you envision.",
+    color: "teal",
+  },
+  {
+    icon: Car,
+    title: "Pathao Booking",
+    badge: "Ride Booking",
+    description:
+      "Book Pathao rides and delivery services through Tsering Palzom Company. Fast, reliable Pathao booking assistance for your travel needs around Davis Fall, Pokhara.",
+    color: "terracotta",
+  },
+  {
+    icon: Navigation,
+    title: "inDrive Booking",
+    badge: "Ride Booking",
+    description:
+      "Book inDrive rides through Tsering Palzom Company. Affordable, transparent fare rides with inDrive — your travel, your price. Convenient booking in Pokhara.",
     color: "teal",
   },
 ];
@@ -245,12 +263,12 @@ export default function App() {
                 Our Products & Services
               </h2>
               <p className="text-[var(--tn-muted)] text-lg max-w-xl mx-auto">
-                Quality rehabilitation wear and handcrafted arts, made with love
-                and purpose.
+                Quality rehabilitation wear, handcrafted arts, and convenient
+                ride booking services, all made with love and purpose.
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {products.map((product, i) => (
                 <motion.div
                   key={product.title}
@@ -300,7 +318,7 @@ export default function App() {
                           data-ocid={`products.button.${i + 1}`}
                         >
                           <Phone className="w-3.5 h-3.5 mr-1.5" />
-                          Call to Order
+                          Call to Book
                         </Button>
                       </a>
                     </CardContent>
@@ -562,7 +580,8 @@ export default function App() {
                 </span>
               </div>
               <p className="text-white/60 text-sm leading-relaxed">
-                Rehabilitation clothing and arts crafted with purpose and care.
+                Rehabilitation clothing, arts, and ride booking services crafted
+                with purpose and care.
               </p>
             </div>
 

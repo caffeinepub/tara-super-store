@@ -205,6 +205,8 @@ const paymentMethods = [
     image: null,
     alt: "",
     caption: "Pay via Bank Wallet or PayPal",
+    phone: "9808091436",
+    email: "therapisttseringdorjee@gmail.com",
     ocid: "payment.paypal.card",
   },
 ];
@@ -805,9 +807,22 @@ export default function App() {
                             <p className="text-sm text-muted-foreground font-medium">
                               QR Code Coming Soon
                             </p>
-                            <p className="text-xs text-muted-foreground mt-1">
-                              Upload your Bank Wallet / PayPal QR
-                            </p>
+                            {(pm as any).phone && (
+                              <a
+                                href={`tel:${(pm as any).phone}`}
+                                className="text-xs text-blue-600 font-semibold mt-2 block hover:underline"
+                              >
+                                📞 {(pm as any).phone}
+                              </a>
+                            )}
+                            {(pm as any).email && (
+                              <a
+                                href={`mailto:${(pm as any).email}`}
+                                className="text-xs text-blue-600 mt-1 block hover:underline break-all"
+                              >
+                                ✉ {(pm as any).email}
+                              </a>
+                            )}
                           </div>
                         </div>
                       )}

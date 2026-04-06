@@ -133,12 +133,6 @@ const SERVICES = [
     color: "text-teal-700",
   },
   {
-    icon: Wallet,
-    label: "Digital Wallet Sales",
-    desc: "Buy and top up Khalti & eSewa digital wallets — fast and secure.",
-    color: "text-blue-500",
-  },
-  {
     icon: ShoppingBag,
     label: "Daraz Sells Agent",
     desc: "Assisted Daraz online shopping and product sourcing service.",
@@ -1086,9 +1080,6 @@ function BookingForm() {
                       <SelectItem value="dry-needling">Dry Needling</SelectItem>
                       <SelectItem value="cupping">Cupping Therapy</SelectItem>
                       <SelectItem value="moxibustion">Moxibustion</SelectItem>
-                      <SelectItem value="digital-wallet">
-                        Digital Wallet Sales
-                      </SelectItem>
                       <SelectItem value="daraz">Daraz Sells Agent</SelectItem>
                     </SelectContent>
                   </Select>

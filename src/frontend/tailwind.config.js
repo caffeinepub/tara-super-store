@@ -16,7 +16,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ["Playfair Display", "serif"],
+        heading: ["Bricolage Grotesque", "sans-serif"],
         body: ["Plus Jakarta Sans", "sans-serif"],
       },
       colors: {
@@ -70,16 +70,18 @@ export default {
           border: "oklch(var(--sidebar-border))",
           ring: "oklch(var(--sidebar-ring))",
         },
-        tn: {
-          terracotta: "var(--tn-terracotta)",
-          "terracotta-light": "var(--tn-terracotta-light)",
-          teal: "var(--tn-teal)",
-          "teal-light": "var(--tn-teal-light)",
-          cream: "var(--tn-cream)",
-          "warm-white": "var(--tn-warm-white)",
-          dark: "var(--tn-dark)",
-          mid: "var(--tn-mid)",
-          muted: "var(--tn-muted)",
+        hp: {
+          sky: "var(--hp-sky)",
+          "sky-light": "var(--hp-sky-light)",
+          "sky-pale": "var(--hp-sky-pale)",
+          cyan: "var(--hp-cyan)",
+          "cyan-light": "var(--hp-cyan-light)",
+          white: "var(--hp-white)",
+          dark: "var(--hp-dark)",
+          mid: "var(--hp-mid)",
+          muted: "var(--hp-muted)",
+          gold: "var(--hp-gold)",
+          "gold-deep": "var(--hp-gold-deep)",
         },
       },
       borderRadius: {
@@ -88,9 +90,9 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       boxShadow: {
-        card: "0 2px 16px 0 rgba(80,40,20,0.08)",
-        heavy: "0 8px 40px 0 rgba(80,40,20,0.16)",
-        warm: "0 4px 24px 0 rgba(180,80,30,0.15)",
+        card: "0 2px 16px 0 rgba(0,60,140,0.08)",
+        heavy: "0 8px 40px 0 rgba(0,60,140,0.18)",
+        sky: "0 4px 24px 0 rgba(0,100,220,0.15)",
       },
       keyframes: {
         "accordion-down": {
@@ -109,12 +111,17 @@ export default {
           from: { opacity: "0" },
           to: { opacity: "1" },
         },
+        float: {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-12px)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in-up": "fade-in-up 0.6s ease-out forwards",
         "fade-in": "fade-in 0.5s ease-out forwards",
+        float: "float 4s ease-in-out infinite",
       },
     },
   },

@@ -46,6 +46,7 @@ const COMPANY = "New Para World Tsering Dorjee Company";
 const OWNER = "Tsering Dorjee";
 const EMAIL = "mypagentnewparaworld@gmail.com";
 const BANK_WALLET_EMAIL = "therapisttseringdorjee@gmail.com";
+const PAYPAL_PHONE = "9709422981";
 const PHONE_PRIMARY = "9808091436";
 const PHONE_2 = "9766047350";
 const LICENSE_NO = "10359";
@@ -895,11 +896,11 @@ function Payment() {
                   </div>
                   <div className="text-center space-y-1.5 mt-1">
                     <a
-                      href={`tel:${PHONE_PRIMARY}`}
+                      href={`tel:${PAYPAL_PHONE}`}
                       className="flex items-center justify-center gap-1.5 text-sm font-semibold text-[var(--hp-sky)] hover:text-[var(--hp-mid)] transition-colors"
                       data-ocid="payment.link"
                     >
-                      <Phone className="w-3.5 h-3.5" /> {PHONE_PRIMARY}
+                      <Phone className="w-3.5 h-3.5" /> {PAYPAL_PHONE}
                     </a>
                     <a
                       href={`mailto:${BANK_WALLET_EMAIL}`}
